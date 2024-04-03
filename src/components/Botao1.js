@@ -5,6 +5,7 @@ const Botao1 = (props) => {
     
     return(
         <TouchableOpacity style={estilos.fundoBotao} onPress={props.funcao}>
+            <Text>oi</Text>
             <Text style={estilos.textoBotao}>{texto}</Text>
         </TouchableOpacity>
     )
