@@ -1,11 +1,23 @@
-Criação do projeto
-
-```bash
-npx react-native init <nomeDoProjeto>
+Clone o projeto
+```
+git clone https://github.com/LuizaNakahira/EC48C.git
 ```
 
+Entre na pasta
+```
+cd EC48C
+```
 
-Execução do projeto
+Instale as dependências
+```bash
+npm install
+
+# ou
+
+yarn
+```
+
+Execute o projeto
 
 ```bash
 emulator -avd <nome do dispositivo> -no-snapshot
@@ -14,4 +26,9 @@ emulator -avd <nome do dispositivo> -no-snapshot
 emulator -list-avds 
 
 npx react-native start
+```
+
+Para compilar (Android)
+```
+npx react-native run-android
 ```
