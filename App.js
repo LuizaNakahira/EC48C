@@ -1,9 +1,11 @@
 import { View, Text } from 'react-native'
 
+import Header from './src/components/Header'
+
 const App = () => {
   return (
     <View>
-      <Text>Oi</Text>
+      <Header texto={"Nova Conta"}/>
     </View>
   )
 }
