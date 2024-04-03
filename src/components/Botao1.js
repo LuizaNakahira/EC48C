@@ -5,7 +5,6 @@ const Botao1 = (props) => {
     
     return(
         <TouchableOpacity style={estilos.fundoBotao} onPress={props.funcao}>
-            <Text>oi</Text>
             <Text style={estilos.textoBotao}>{texto}</Text>
         </TouchableOpacity>
     )
@@ -15,13 +14,13 @@ const estilos = StyleSheet.create({
     fundoBotao: {
         backgroundColor: '#37BD6D',
         width: 300,
-        height: 35,
+        height: 'auto',
         alignItems: 'center', 
         justifyContent: 'center'
     },
     textoBotao: {
         fontSize: 20,
-        color: 'white',        
+        color: 'white',
     }
 })
 

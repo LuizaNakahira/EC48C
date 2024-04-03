@@ -22,7 +22,7 @@ const estilos = StyleSheet.create({
     TextInput: {
         backgroundColor: 'white',
         width: 300,
-        height: 35,
+        height: 'auto',
         paddingLeft: 15
     },
     textoErrado: {

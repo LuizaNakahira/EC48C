@@ -7,4 +7,4 @@ import App from './App';
 import {name as appName} from './app.json';
 import RecuperacaoSenha from './src/screens/RecuperacaoSenha';
 
-AppRegistry.registerComponent(appName, () => App);
+AppRegistry.registerComponent(appName, () => RecuperacaoSenha);
