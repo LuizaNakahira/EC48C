@@ -13,14 +13,16 @@ const Botao1 = (props) => {
 const estilos = StyleSheet.create({
     fundoBotao: {
         backgroundColor: '#37BD6D',
-        width: 300,
+        width: "100%",
         height: 'auto',
         alignItems: 'center', 
-        justifyContent: 'center'
+        justifyContent: 'center',
+        paddingVertical: 8,
     },
     textoBotao: {
         fontSize: 20,
         color: 'white',
+        fontFamily: 'AveriaLibre-Regular'
     }
 })
 
