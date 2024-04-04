@@ -4,6 +4,19 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import InputText from '../components/InputText';
 import Botao1 from '../components/Botao1';
 
+const Entrar = () => {
+  console.log('Entrar')
+}
+
+const CriarConta = () => {
+  console.log('criar conta')
+}
+
+
+const EsqueciSenha = () => {
+  console.log('esqueci minha senha')
+}
+
 const Login = () => {
   return (
     <View style={estilos.containerGeral}>
@@ -26,15 +39,15 @@ const Login = () => {
             erro="E-mail e/ou senha inválidos."
             
           />
-          <Botao1 texto="Entrar" />
+          <Botao1 texto="Entrar" funcao={Entrar} />
         </View>
 
         <View style={estilos.botoesContainer}>
-          <TouchableOpacity style={estilos.fundoBotaoAzul}>
+          <TouchableOpacity style={estilos.fundoBotaoAzul} onPress={CriarConta}>
             <Text style={estilos.textoBotao}>Criar minha conta</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={estilos.fundoBotaoCinza}>
+          <TouchableOpacity style={estilos.fundoBotaoCinza} onPress={EsqueciSenha}>
             <Text style={estilos.textoBotao}>Esqueci minha senha</Text>
           </TouchableOpacity>
         </View>
