@@ -18,6 +18,9 @@ const EsqueciSenha = () => {
 }
 
 const Login = () => {
+  const [email, setEmail] = useState('')
+  const [senha, setSenha] = useState('')
+  
   return (
     <View style={estilos.containerGeral}>
       <View style={estilos.tituloContainer}>
