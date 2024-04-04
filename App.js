@@ -1,11 +1,11 @@
 import { View, Text } from 'react-native'
 
-import Login from './src/screens/Login'
+import Header from './src/components/Header'
 
 const App = () => {
   return (
     <View>
-      <Login />
+      <Header texto={"Nova Conta"}/>
     </View>
   )
 }
