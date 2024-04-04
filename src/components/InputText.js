@@ -20,7 +20,7 @@ const InputText = props => {
 
 const estilos = StyleSheet.create({
   textoInput: {
-    fontSize: 20,
+    fontSize: 25,
     color: 'white',
     fontFamily: 'AveriaLibre-Regular',
     marginBottom: 5,
