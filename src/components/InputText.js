@@ -11,6 +11,7 @@ const InputText = props => {
         style={estilos.TextInput}
         placeholder={props.placeholder}
         placeholderTextColor={'#3F92C5'}
+        secureTextEntry={true}
       />
       <Text style={estilos.textoErrado}>{props.erro}</Text>
     </View>

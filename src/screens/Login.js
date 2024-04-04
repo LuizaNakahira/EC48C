@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity, ScrollView} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import InputText from '../components/InputText';
@@ -7,40 +7,38 @@ import Botao1 from '../components/Botao1';
 const Login = () => {
   return (
     <View style={estilos.containerGeral}>
-      <View style={estilos.containerSecundario}>
-        <View style={estilos.tituloContainer}>
-          <Text style={estilos.titulo}>Satisfying.you</Text>
-          <Icon name="sentiment-satisfied" size={55} color="#fff" />
-        </View>
-
-        <View style={estilos.loginContainer}>
-          <View style={estilos.formularioContainer}>
-            <InputText
-              tipoInput="email-address"
-              texto="E-mail"
-              placeholder="jurandir.pereira@hotmail.com"
-            />
-            <InputText
-              tipoInput="default"
-              texto="Senha"
-              placeholder="*********"
-              erro="E-mail e/ou senha inválidos."
-              secureTextEntry={true}
-            />
-            <Botao1 texto="Entrar" />
-          </View>
-
-          <View style={estilos.botoesContainer}>
-            <TouchableOpacity style={estilos.fundoBotaoAzul}>
-              <Text style={estilos.textoBotao}>Criar minha conta</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={estilos.fundoBotaoCinza}>
-              <Text style={estilos.textoBotao}>Esqueci minha senha</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
+      <View style={estilos.tituloContainer}>
+        <Text style={estilos.titulo}>Satisfying.you</Text>
+        <Icon name="sentiment-satisfied" size={55} color="#fff" />
       </View>
+
+      <ScrollView style={estilos.containerSecundario} contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', gap: 60, }}>
+        <View style={estilos.formularioContainer}>
+          <InputText
+            tipoInput="email-address"
+            texto="E-mail"
+            placeholder="jurandir.pereira@hotmail.com"
+          />
+          <InputText
+            tipoInput="default"
+            texto="Senha"
+            placeholder="*********"
+            erro="E-mail e/ou senha inválidos."
+            
+          />
+          <Botao1 texto="Entrar" />
+        </View>
+
+        <View style={estilos.botoesContainer}>
+          <TouchableOpacity style={estilos.fundoBotaoAzul}>
+            <Text style={estilos.textoBotao}>Criar minha conta</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={estilos.fundoBotaoCinza}>
+            <Text style={estilos.textoBotao}>Esqueci minha senha</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
     </View>
   );
 };
@@ -51,16 +49,7 @@ const estilos = StyleSheet.create({
     backgroundColor: '#372775',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  containerSecundario: {
-    width: '80%',
-    height: '100%',
-    paddingVertical: 31,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    paddingVertical: 30,
   },
 
   tituloContainer: {
@@ -70,7 +59,12 @@ const estilos = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     gap: 28,
-    paddingBottom: 35,
+    paddingBottom: 20,
+  },
+
+  containerSecundario: {
+    width: '80%',
+    display: 'flex',
   },
 
   titulo: {
@@ -79,25 +73,21 @@ const estilos = StyleSheet.create({
     color: '#fff',
   },
 
-  loginContainer: {
-    width: '100%',
-    flex: 1,
-    display: 'flex',
-    justifyContent: 'center',
-    gap: 62,
-  },
-
   formularioContainer: {
+    width: '100%',
+    display: 'flex',
     gap: 20,
   },
 
   botoesContainer: {
-    gap: 14,
+    width: '100%',
+    display: 'flex',
+    gap: 10,
   },
 
   fundoBotaoAzul: {
     backgroundColor: '#419ED7',
-    width: "100%",
+    width: '100%',
     height: 'auto',
     alignItems: 'center',
     justifyContent: 'center',
@@ -106,7 +96,7 @@ const estilos = StyleSheet.create({
 
   fundoBotaoCinza: {
     backgroundColor: '#B0CCDE',
-    width: "100%",
+    width: '100%',
     height: 'auto',
     alignItems: 'center',
     justifyContent: 'center',
