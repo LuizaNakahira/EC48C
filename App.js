@@ -5,7 +5,9 @@ import NovaPesquisa from './src/screens/NovaPesquisa'
 
 const App = () => {
   return (
-    <NovaPesquisa/>
+    <View>
+      <NovaPesquisa/>
+    </View>
   )
 }
 
