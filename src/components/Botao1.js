@@ -12,11 +12,11 @@ const Botao1 = (props) => {
 
 const estilos = StyleSheet.create({
     fundoBotao: {
+        display: 'flex',
         backgroundColor: '#37BD6D',
         width: "100%",
         height: 'auto',
         alignItems: 'center', 
-        justifyContent: 'center',
         paddingVertical: 8,
     },
     textoBotao: {
