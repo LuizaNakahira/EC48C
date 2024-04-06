@@ -16,21 +16,25 @@ const Search = (props) => {
     const [searchQuery, setSearchQuery] = useState('');
 
     return(
-        <PaperProvider theme={theme}>
-           
+        <PaperProvider theme={theme} >
+            <View style={estilos.fundoSearch}>
                 <Searchbar style={estilos.pesquisa} placeholder="Insira o termo de busca..." onChangeText={setSearchQuery} value={searchQuery}  />           
-
+            </View>
         </PaperProvider>
     )
 }
 
 const estilos = StyleSheet.create({
+    fundoSearch: {
+        display: 'flex',
+        height: 'auto',
+        width: 'auto',    
+        },
     pesquisa: {
         backgroundColor: 'white',
-        height: 'auto',
-        width: 'auto',
         borderRadius: 0
     }
 })
 
 export default Search;
+
