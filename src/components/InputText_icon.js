@@ -10,6 +10,7 @@ const InputText_icon = (props) => {
                 keyboardType={props.tipoInput}
                 style={estilos.textInput}
                 placeholder={props.placeholder} 
+                placeholderTextColor={'#3F92C5'}
             />
             <TouchableOpacity style={estilos.calendarInput}>
                 <Icon name="calendar-month" size={40} color="#999998"/>
@@ -35,7 +36,9 @@ const estilos = StyleSheet.create({
     backgroundColor: "white",
     color: "black",
     paddingHorizontal: 10,
-    paddingLeft: 15
+    paddingLeft: 15,
+    fontSize: 20,
+    color: '#3F92C5',
 },
   containerData: {
         width: "100%",
