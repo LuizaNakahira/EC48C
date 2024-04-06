@@ -21,7 +21,7 @@ const estilos = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 17,
     paddingHorizontal: 14,
-    gap: 30,
+    gap: 20,
   },
 
   texto: {

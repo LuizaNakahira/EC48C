@@ -12,5 +12,6 @@ import NovaConta from './src/screens/NovaConta';
 import Relatorio from './src/screens/Relatorio';
 import Home from './src/screens/Home';
 import NovaPesquisa from './src/screens/NovaPesquisa';
+import ModifPesquisa from './src/screens/ModifPesquisa';
 
-AppRegistry.registerComponent(appName, () => Relatorio);
+AppRegistry.registerComponent(appName, () => ModifPesquisa);
