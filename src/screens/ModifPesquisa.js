@@ -18,7 +18,7 @@ const ModifPesquisa = () => {
             <ScrollView style={estilos.containerSecundario} contentContainerStyle={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center' }}>
                 <View style={estilos.containerForms}>
                     <View style={estilos.containerInputs}>
-                        <InputText texto={"Nome"} />
+                        <InputText texto={"Nome"} secure={false} tipoInput="default"/>
 
                         <InputText_icon texto={"Data"} />
 

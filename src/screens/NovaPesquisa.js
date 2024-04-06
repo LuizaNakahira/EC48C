@@ -23,7 +23,7 @@ const NovaPesquisa = () => {
         <ScrollView style={estilos.containerSecundario} contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', gap: 60, }}>
             <View style={estilos.containerForms}>
                 <View style={estilos.containerInputs}>
-                    <InputText texto={"Nome"} erro="Preencha no nome da pesquisa"/>
+                    <InputText texto={"Nome"} erro="Preencha no nome da pesquisa" secure={false} tipoInput="default"/>
                 
                     <InputText_icon texto={"Data"} erro="Preencha a data" />
                     

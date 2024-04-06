@@ -2,6 +2,7 @@ import {StyleSheet, View, Text, TextInput} from 'react-native';
 
 const InputText = props => {
   const texto = props.texto;
+  const secure = props.secure 
 
   return (
     <View style={estilos.containerEmail}>
@@ -11,7 +12,7 @@ const InputText = props => {
         style={estilos.TextInput}
         placeholder={props.placeholder}
         placeholderTextColor={'#3F92C5'}
-        secureTextEntry={true}
+        secureTextEntry={secure} //passe por props 'true' ou 'false'
       />
       <Text style={estilos.textoErrado}>{props.erro}</Text>
     </View>
@@ -32,6 +33,7 @@ const estilos = StyleSheet.create({
     paddingLeft: 15,
     fontFamily: 'AveriaLibre-Regular',
     color: '#3F92C5',
+    fontSize: 20
   },
   textoErrado: {
     color: '#FD7979',

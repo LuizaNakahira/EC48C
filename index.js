@@ -14,4 +14,4 @@ import Home from './src/screens/Home';
 import NovaPesquisa from './src/screens/NovaPesquisa';
 import ModifPesquisa from './src/screens/ModifPesquisa';
 
-AppRegistry.registerComponent(appName, () => ModifPesquisa);
+AppRegistry.registerComponent(appName, () => NovaPesquisa);
