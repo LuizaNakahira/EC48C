@@ -6,16 +6,16 @@ const { width } = Dimensions.get('window');
 
 const MyCarousel = () => {
     const data = [
-        { title: 'Item 1', iconName: 'arrow-back', date: '10/1023'},
-        { title: 'Item 2' },
-        { title: 'Item 3'},
-        { title: 'Item 4'}
+        { title: 'SECOMP 2023', iconName: 'devices', color: '#A52A2A', date: '10/10/2023'},
+        { title: 'UBUNTU 2022', iconName: 'groups', color: '#708090', date: '05/06/2022' },
+        { title: 'MENINAS CPU', iconName: 'woman', color: '#800000', date: '01/04/2022'},
+        { title: 'GUARDA-CHUVA', iconName: 'beach-access', color: '#00FF00', date: '07/04/2024'}
     ];
 
     const renderItem = ({ item }) => (
         <View style={styles.itemContainer}>
             <View style={styles.square}>
-                <Icon name={item.iconName} size={60} color='#573FBA' />
+                <Icon name={item.iconName} size={130} color={item.color} />
                 <Text style={styles.title}>{item.title}</Text>
                 <Text style={styles.date}>{item.date}</Text>
             </View>
@@ -53,16 +53,15 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     title: {
-        color: 'blue',
-        fontSize: 16,
-        justifyContent: 'flex-end'
-    },
-    icon: {
-        marginTop: 5
+        color: '#419ED7',
+        fontSize: 30,
+        justifyContent: 'flex-end',
+        fontFamily: 'AveriaLibre-Regular'
     },
     date: {
-        color: 'black',
-        fontSize: 10
+        color: '#80808080',
+        fontSize: 12,
+        fontFamily: 'AveriaLibre-Regular'
     }
 });
 
