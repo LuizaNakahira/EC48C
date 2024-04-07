@@ -4,8 +4,6 @@ import HeaderHome from '../components/HeaderHome';
 import Search from '../components/Search';
 import MyCarousel from '../components/MyCarousel';
 
-import {useState} from 'react';
-
 const Home = () => {
   return (
     <View style={estilos.fundo}>
@@ -19,10 +17,8 @@ const Home = () => {
         <View style={estilos.containerCarousel}>
           <MyCarousel />
         </View>
-  
+
         <Botao1 texto="NOVA PESQUISA" />
-       
-        
       </View>
     </View>
   );
@@ -41,6 +37,9 @@ const estilos = StyleSheet.create({
   },
   containerCarousel: {
     display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   containerHome: {
     display: 'flex',
@@ -48,9 +47,7 @@ const estilos = StyleSheet.create({
     flex: 1,
     width: '80%',
     backgroundColor: 'yellow',
-    justifyContent: 'space-between'
-  }
-  
+  },
 });
 
 export default Home;
