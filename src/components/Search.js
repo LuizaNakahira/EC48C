@@ -19,6 +19,8 @@ const Search = props => {
     <Searchbar
       style={estilos.pesquisa}
       placeholder="Insira o termo de busca..."
+      placeholderTextColor='gray'
+      iconColor='gray'
       inputStyle={{fontFamily: 'AveriaLibre-Regular'}}
       onChangeText={setSearchQuery}
       value={searchQuery}

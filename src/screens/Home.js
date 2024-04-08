@@ -11,14 +11,19 @@ const Home = () => {
         <HeaderHome />
       </View>
 
-      <Search />
+      
 
       <View style={estilos.containerHome}>
+        <Search />
+        
         <View style={estilos.containerCarousel}>
-          <MyCarousel />
+        <MyCarousel />
         </View>
+        
+        <Botao1 texto="NOVA PESQUISA" />
       </View>
-      <Botao1 texto="NOVA PESQUISA" />
+
+      
     </View>
   );
 };
@@ -28,6 +33,7 @@ const estilos = StyleSheet.create({
     display: 'flex',
     flex: 1,
     backgroundColor: '#372775',
+    alignItems: 'center', 
   },
   headerContainer: {
     width: '100%',
@@ -36,15 +42,13 @@ const estilos = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
   },
   containerHome: {
     display: 'flex',
     flexDirection: 'column',
     flex: 1,
-    width: '100%',
-    backgroundColor: 'yellow',
-    justifyContent: 'center',
+    width: '90%',
+    justifyContent: 'space-around'
   },
 });
 
