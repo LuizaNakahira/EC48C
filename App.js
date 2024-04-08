@@ -1,13 +1,28 @@
-import { View, Text } from 'react-native'
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 
-import Header from './src/components/Header'
+import Home from './src/screens/Home';
+
+const Stack = createStackNavigator();
 
 const App = () => {
   return (
-    <View>
-      <Header texto={"Nova Conta"}/>
-    </View>
-  )
-}
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name="Home" component={Home} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
 
-export default App
+export default App;
+
+//TELAS
+//onPress = {() => props.navigation.navigate('App')}
+//onPress = {() => props.navigation.pop()}
+//onPress = {() => props.navigation.push('App')}
+
+//onPress = {() => props.navigation.popToTop()}         desempilhar tudo
+
+//PARA COMPONENTES
+//passa por props na tela que está chamando o componente
