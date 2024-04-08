@@ -16,33 +16,27 @@ const Search = props => {
   const [searchQuery, setSearchQuery] = useState('');
 
   return (
-    <PaperProvider theme={theme}>
-      <View style={estilos.fundoSearch}>
-        <Searchbar
-          style={estilos.pesquisa}
-          placeholder="Insira o termo de busca..."
-          inputStyle={{ fontFamily: 'AveriaLibre-Regular' }}
-          onChangeText={setSearchQuery}
-          value={searchQuery}
-        />
-      </View>
-    </PaperProvider>
+    <Searchbar
+      style={estilos.pesquisa}
+      placeholder="Insira o termo de busca..."
+      inputStyle={{fontFamily: 'AveriaLibre-Regular'}}
+      onChangeText={setSearchQuery}
+      value={searchQuery}
+    />
   );
 };
 
 const estilos = StyleSheet.create({
   fundoSearch: {
     display: 'flex',
-    height: 'auto',
-    width: 'auto',
   },
   pesquisa: {
     backgroundColor: 'white',
     borderRadius: 0,
   },
   placeholder: {
-    fontFamily: 'AveriaLibre-Regular'
-  }
+    fontFamily: 'AveriaLibre-Regular',
+  },
 });
 
 export default Search;

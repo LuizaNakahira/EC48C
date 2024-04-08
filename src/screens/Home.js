@@ -1,4 +1,4 @@
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet, Text, TextInput} from 'react-native';
 import Botao1 from '../components/Botao1';
 import HeaderHome from '../components/HeaderHome';
 import Search from '../components/Search';
@@ -11,15 +11,14 @@ const Home = () => {
         <HeaderHome />
       </View>
 
-      <View style={estilos.containerHome}>
-        <Search />
+      <Search />
 
+      <View style={estilos.containerHome}>
         <View style={estilos.containerCarousel}>
           <MyCarousel />
         </View>
-
-        <Botao1 texto="NOVA PESQUISA" />
       </View>
+      <Botao1 texto="NOVA PESQUISA" />
     </View>
   );
 };
@@ -27,10 +26,8 @@ const Home = () => {
 const estilos = StyleSheet.create({
   fundo: {
     display: 'flex',
-    width: '100%',
     flex: 1,
     backgroundColor: '#372775',
-    alignItems: 'center',
   },
   headerContainer: {
     width: '100%',
@@ -45,8 +42,9 @@ const estilos = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     flex: 1,
-    width: '80%',
+    width: '100%',
     backgroundColor: 'yellow',
+    justifyContent: 'center',
   },
 });
 
