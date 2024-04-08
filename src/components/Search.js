@@ -21,9 +21,9 @@ const Search = props => {
         <Searchbar
           style={estilos.pesquisa}
           placeholder="Insira o termo de busca..."
+          inputStyle={{ fontFamily: 'AveriaLibre-Regular' }}
           onChangeText={setSearchQuery}
           value={searchQuery}
-          placeholderStyle={{fontFamily: 'AveriaLibre-Regular'}}
         />
       </View>
     </PaperProvider>
@@ -40,6 +40,9 @@ const estilos = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 0,
   },
+  placeholder: {
+    fontFamily: 'AveriaLibre-Regular'
+  }
 });
 
 export default Search;
