@@ -1,17 +1,29 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-
+import  { createDrawerNavigator } from '@react-navigation/drawer';
+import DrawerContet from './src/screens/DrawerContent';
 import Home from './src/screens/Home';
-import RecuperacaoSenha from './src/screens/RecuperacaoSenha';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
-const Stack = createStackNavigator();
+
+//const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator()
 
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{headerShown: false}}>
+      {/*
+        <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Drawer" component={Drawer} />
       </Stack.Navigator>
+      */}
+
+      <Drawer.Navigator screenOptions={{ drawerLabelStyle: { color: 'white' }, drawerStyle: {} }} initialRouteName='Home' drawerContent={(props) => <DrawerContet {...props} />} >
+                <Drawer.Screen name="Home" component={Home} options={{ drawerIcon: () => <Icon color="white" size={20} name="description" /> }} />
+                
+      </Drawer.Navigator>
+
     </NavigationContainer>
   );
 };

@@ -1,14 +1,19 @@
-import {View, StyleSheet, Text, TextInput} from 'react-native';
+import {View, StyleSheet, Button} from 'react-native';
 import Botao1 from '../components/Botao1';
 import HeaderHome from '../components/HeaderHome';
 import Search from '../components/Search';
 import MyCarousel from '../components/MyCarousel';
 
-const Home = () => {
+const Home = (props) => {
+
+  const goToDrawer = () => {
+    props.navigation.navigate('Drawer');
+  }
+
   return (
     <View style={estilos.fundo}>
       <View style={estilos.headerContainer}>
-        <HeaderHome />
+        <HeaderHome onPress={goToDrawer}/>
       </View>
 
       
@@ -23,7 +28,6 @@ const Home = () => {
         <Botao1 texto="NOVA PESQUISA" />
       </View>
 
-      
     </View>
   );
 };
