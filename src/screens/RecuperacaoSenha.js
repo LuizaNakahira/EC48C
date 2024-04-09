@@ -9,6 +9,7 @@ const RecuperacaoSenha = () => {
 
   return (
     <View style={estilos.fundo}>
+      
       <View style={estilos.headerContainer}>
         <Header texto="Recuperação de senha" />
       </View>
