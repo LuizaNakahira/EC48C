@@ -1,6 +1,5 @@
-import {View, StyleSheet, Button} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import Botao1 from '../components/Botao1';
-import HeaderHome from '../components/HeaderHome';
 import Search from '../components/Search';
 import MyCarousel from '../components/MyCarousel';
 
@@ -11,12 +10,7 @@ const Home = (props) => {
   }
 
   return (
-    <View style={estilos.fundo}>
-      <View style={estilos.headerContainer}>
-        <HeaderHome onPress={goToDrawer}/>
-      </View>
-
-      
+    <View style={estilos.fundo}>     
 
       <View style={estilos.containerHome}>
         <Search />

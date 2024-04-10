@@ -11,7 +11,7 @@ const Drawer = createDrawerNavigator()
 
 const App = () => {
   return (
-    <NavigationContainer>
+    <NavigationContainer >
       {/*
         <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="Home" component={Home} />
@@ -19,8 +19,16 @@ const App = () => {
       </Stack.Navigator>
       */}
 
-      <Drawer.Navigator screenOptions={{ drawerLabelStyle: { color: 'white' }, drawerStyle: {} }} initialRouteName='Home' drawerContent={(props) => <DrawerContet {...props} />} >
-                <Drawer.Screen name="Home" component={Home} options={{ drawerIcon: () => <Icon color="white" size={20} name="description" /> }} />
+      <Drawer.Navigator 
+      screenOptions={{ 
+        drawerLabelStyle: { display: 'flex' , color: 'white', fontSize: 24} }} 
+        initialRouteName='Home' 
+        drawerContent={(props) => <DrawerContet {...props} />} 
+      >
+                
+        <Drawer.Screen name="Pesquisas" component={Home} 
+        options={{ 
+          drawerIcon: () => <Icon color="white" size={20} name="description" /> }} />
                 
       </Drawer.Navigator>
 
