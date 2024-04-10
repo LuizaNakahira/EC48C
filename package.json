@@ -23,6 +23,7 @@
     "react-native-screens": "^3.30.1",
     "react-native-snap-carousel": "^3.9.1",
     "react-native-svg": "^15.1.0",
+    "react-native-svg-charts": "^5.4.0",
     "react-native-vector-icons": "^10.0.3"
   },
   "devDependencies": {

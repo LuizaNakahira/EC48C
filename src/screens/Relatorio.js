@@ -1,93 +1,106 @@
-import {View, Dimensions, StyleSheet} from 'react-native';
-import {PieChart} from 'react-native-chart-kit';
+import React from 'react';
+import {View, Dimensions, StyleSheet, Text} from 'react-native';
+import {PieChart} from 'react-native-svg-charts';
 
 import Header from '../components/Header';
 
-const data = [
-  {
-    name: 'Excelente',
-    quantidade: 10,
-    color: '#F1CE7E',
-    legendFontColor: '#fff',
-    legendFontSize: 16,
-  },
-  {
-    name: 'Bom',
-    quantidade: 7,
-    color: '#6994FE',
-    legendFontColor: '#fff',
-    legendFontSize: 16,
-  },
-  {
-    name: 'Neutro',
-    quantidade: 3,
-    color: '#5FCDA4',
-    legendFontColor: '#fff',
-    legendFontSize: 16,
-  },
-  {
-    name: 'Ruim',
-    quantidade: 1,
-    color: '#EA7288',
-    legendFontColor: '#fff',
-    legendFontSize: 16,
-  },
-  {
-    name: 'Péssimo',
-    quantidade: 2,
-    color: '#53D8D8',
-    legendFontColor: '#fff',
-    legendFontSize: 16,
-  },
-];
+class Relatorio extends React.PureComponent {
+  render() {
+    const data = [
+      {
+        key: 'Excelente',
+        value: 50,
+        svg: {fill: '#F1CE7E'},
+        arc: {outerRadius: '120%', cornerRadius: 0, padAngle: 0.2},
+      },
+      {
+        key: 'Bom',
+        value: 40,
+        svg: {fill: '#6994FE'},
+      },
+      {
+        key: 'Neutro',
+        value: 20,
+        svg: {fill: '#5FCDA4'},
+      },
+      {
+        key: 'Ruim',
+        value: 30,
+        svg: {fill: '#EA7288'},
+      },
+      {
+        key: 'Péssimo',
+        value: 20,
+        svg: {fill: '#53D8D8'},
+      },
+    ];
 
-const chartConfig = {
-  backgroundGradientFrom: '#1E2923',
-  backgroundGradientFromOpacity: 0,
-  backgroundGradientTo: '#08130D',
-  backgroundGradientToOpacity: 0.5,
-  color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
-  strokeWidth: 20,
-  barPercentage: 0.5,
-  useShadowColorFromDataset: false,
-};
+    return (
+      <View style={estilos.container}>
+        <Header texto="Relatório" />
+        <View style={estilos.relatorioContainer}>
+          <PieChart
+            style={estilos.pieChart}
+            outerRadius={'83%'}
+            innerRadius={'10%'}
+            data={data}
+            padAngle={0}
+          />
 
-const Relatorio = () => {
-  return (
-    <View style={estilos.containerGeral}>
-      <Header texto="Relatório" />
-
-      <View style={estilos.chartContainer}>
-        <PieChart
-          data={data}
-          width={Dimensions.get('window').width}
-          height={280}
-          chartConfig={chartConfig}
-          accessor={'quantidade'}
-          backgroundColor={'transparent'}
-          center={[0, 0]}
-          paddingLeft={30}
-          absolute
-        />
+          <View style={estilos.legendaContainer}>
+            {data.map((item, index) => (
+              <View key={index} style={estilos.legendaItem}>
+                <View
+                  style={[estilos.legendaCor, {backgroundColor: item.svg.fill}]}
+                />
+                <Text style={estilos.legendaTexto}>{item.key}</Text>
+              </View>
+            ))}
+          </View>
+        </View>
       </View>
-    </View>
-  );
-};
+    );
+  }
+}
 
 const estilos = StyleSheet.create({
-  containerGeral: {
-    flex: 1,
+  container: {
     backgroundColor: '#372775',
-    display: 'flex',
-    alignItems: 'center',
+    flex: 1,
   },
 
-  chartContainer: {
-    height: '80%',
-    display: 'flex',
+  relatorioContainer: {
+    flex: 1,
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-  }
+    gap: 34,
+  },
+
+  pieChart: {
+    height: 300, 
+    width: 250, 
+    display: 'flex',
+    marginLeft: '-10%',
+  },
+
+  legendaItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+
+  legendaCor: {
+    width: 30,
+    height: 30,
+    marginRight: 5,
+  },
+
+  legendaTexto: {
+    color: 'white',
+    fontFamily: 'AveriaLibre-Regular',
+    fontSize: 16,
+  },
 });
 
 export default Relatorio;
