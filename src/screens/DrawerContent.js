@@ -10,20 +10,24 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const DrawerContent = (props) => {
     return(
-        <DrawerContentScrollView {...props} contentContainerStyle={{ display: 'flex', flex: 1}} style={{ backgroundColor: '#2B1F5C', }}>
-            <View contentContainerStyle={{ display: 'flex', flex: 1}} >
-                <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', paddingVertical: 30 }}>
-                    <Text style={{ color: 'white', fontSize: 24 }}>usuario@dominio.com</Text>
+        <DrawerContentScrollView {...props} contentContainerStyle={{ display: 'flex', flex: 1, justifyContent: 'space-between'}} style={{ backgroundColor: '#2B1F5C'}}>
+            <View  style={{ display: 'flex', flex: 1, justifyContent: 'space-evenly', maxHeight: 250}} >
+               
+                <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
+                    <Text style={{ color: 'white', fontSize: 25 }}>usuario@dominio.com</Text>
                 </View>
 
                 <View style={{ display: 'flex', alignItems: 'center' }}>
-                    <Divider style={{ borderWidth: 1.5, borderColor: 'white', width: '80%' }} />
+                    <Divider style={{ borderWidth: 1.1, borderColor: 'white', width: '80%' }} />
                 </View>
 
                 <DrawerItemList {...props} />
+          
             </View>
 
-            <DrawerItem labelStyle={{display: 'flex', color: 'white', fontSize: 24}} label="Sair" icon={() => <Icon name="logout" size={20} color="white" />} onPress={() => console.log("Adios muchacho")} />
+            <DrawerItem 
+            contentContainerStyle={{justifyContent: 'flex-end'}}
+            labelStyle={{display: 'flex', color: 'white', fontSize: 25}} label="Sair" icon={() => <Icon name="logout" size={33} color="white" />} onPress={() => console.log("Adios muchacho")} />
         </DrawerContentScrollView>
     )
 }

@@ -4,6 +4,7 @@ import  { createDrawerNavigator } from '@react-navigation/drawer';
 import DrawerContet from './src/screens/DrawerContent';
 import Home from './src/screens/Home';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import 'react-native-gesture-handler'
 
 
 //const Stack = createStackNavigator();
@@ -11,7 +12,11 @@ const Drawer = createDrawerNavigator()
 
 const App = () => {
   return (
-    <NavigationContainer >
+    <NavigationContainer 
+      screenOptions={{
+       
+      }}
+    >
       {/*
         <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="Home" component={Home} />
@@ -21,14 +26,29 @@ const App = () => {
 
       <Drawer.Navigator 
       screenOptions={{ 
-        drawerLabelStyle: { display: 'flex' , color: 'white', fontSize: 24} }} 
+        headerStyle: {
+          backgroundColor: '#372775'
+        },
+        headerTintColor: '#FFF',
+        headerShadowVisible: false,
+        headerTitle: '',
+        drawerLabelStyle: {
+          fontSize: 25, 
+        }
+        
+      
+      }} 
         initialRouteName='Home' 
         drawerContent={(props) => <DrawerContet {...props} />} 
       >
                 
-        <Drawer.Screen name="Pesquisas" component={Home} 
+        <Drawer.Screen 
+        name="Pesquisas" 
+        component={Home}
         options={{ 
-          drawerIcon: () => <Icon color="white" size={20} name="description" /> }} />
+          drawerActiveBackgroundColor: '#2B1F5C',
+          drawerActiveTintColor: '#FFF',
+          drawerIcon: () => <Icon color="white" size={33} name="description" /> }} />
                 
       </Drawer.Navigator>
 
