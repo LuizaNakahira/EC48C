@@ -6,7 +6,6 @@ import {AppRegistry, LogBox} from 'react-native';
 import {name as appName} from './app.json';
 
 import App from './App';
-import NovaPesquisa from './src/screens/NovaPesquisa'
-import Login from './src/screens/Login';
+import NovaConta from './src/screens/NovaConta';
 
-AppRegistry.registerComponent(appName, () => Login);
+AppRegistry.registerComponent(appName, () => NovaConta);

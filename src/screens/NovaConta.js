@@ -1,9 +1,10 @@
 import {StyleSheet, Text, View, TouchableOpacity, ScrollView} from 'react-native';
+import { useState } from 'react';
+
 
 import Header from '../components/Header';
 import InputText from '../components/InputText';
 import Botao1 from '../components/Botao1';
-import { useState } from 'react';
 
 const Cadastrar = () => {
   console.log('cadastrar')
@@ -13,6 +14,25 @@ const NovaConta = () => {
   const [email, setEmail] = useState('')
   const [senha, setSenha] = useState('')
   const [novaSenha, setNovaSenha] = useState('')
+
+  const [senhaErro, setSenhaErro] = useState('')
+
+  const handlePassword = () => {
+    let valid = true;
+
+    if (senha.trim() === novaSenha.trim()) {
+      setSenhaErro('');
+      valid = false;
+
+    } else {
+      setSenhaErro('O campo repetir senha difere da senha');
+    }
+
+    if (valid) {
+      console.log('Nova Conta realizado com sucesso');
+      // prosseguir com a lógica de cadastro
+    }
+  }
 
   return (
     <View style={estilos.containerGeral}>
@@ -24,20 +44,22 @@ const NovaConta = () => {
             tipoInput="email-address"
             texto="E-mail"
             placeholder="jurandir.pereira@hotmail.com"
+            onChangeText={setEmail}
           />
           <InputText
             tipoInput="default"
             texto="Senha"
             placeholder="*********"
+            onChangeText={setSenha}
             
           />
           <InputText
             tipoInput="default"
             texto="Repetir senha"
-            erro="O campo repetir senha difere da senha"
-            
+            onChangeText={setNovaSenha}
+            erro={senhaErro}
           />
-          <Botao1 texto="Cadastrar" funcao={Cadastrar} />
+          <Botao1 texto="Cadastrar" funcao={handlePassword} />
         </View>
       </ScrollView>
     </View>

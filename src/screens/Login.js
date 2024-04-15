@@ -22,7 +22,6 @@ const Login = () => {
   const [email, setEmail] = useState('')
   const [senha, setSenha] = useState('')
 
-  const [emailErro, setEmailErro] = useState('')
   const [senhaErro, setSenhaErro] = useState('')
 
   const validarEmail = (email) => {
@@ -50,7 +49,7 @@ const Login = () => {
         console.log('Login realizado com sucesso');
         // prosseguir com a lógica de cadastro
       }
-    };
+    }
   
   return (
     <View style={estilos.containerGeral}>
