@@ -1,4 +1,5 @@
 import {StyleSheet, Text, View, TouchableOpacity, ScrollView} from 'react-native';
+import { useState } from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import InputText from '../components/InputText';
@@ -20,6 +21,36 @@ const EsqueciSenha = () => {
 const Login = () => {
   const [email, setEmail] = useState('')
   const [senha, setSenha] = useState('')
+
+  const [emailErro, setEmailErro] = useState('')
+  const [senhaErro, setSenhaErro] = useState('')
+
+  const validarEmail = (email) => {
+    // Expressão regular para validar email
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return regex.test(email)
+  }
+
+  const handleLogin = () => {
+      let valid = true;
+  
+      if (email.trim() === '' || senha.trim() === '') {
+        setSenhaErro('E-mail e/ou senha inválidos.');
+        valid = false;
+
+      } else if (!validarEmail(email)) {
+        setSenhaErro('E-mail e/ou senha inválidos.');
+        valid = false;
+
+      } else {
+        setSenhaErro('');
+      }
+  
+      if (valid) {
+        console.log('Login realizado com sucesso');
+        // prosseguir com a lógica de cadastro
+      }
+    };
   
   return (
     <View style={estilos.containerGeral}>
@@ -34,15 +65,16 @@ const Login = () => {
             tipoInput="email-address"
             texto="E-mail"
             placeholder="jurandir.pereira@hotmail.com"
+            onChangeText={setEmail}
           />
           <InputText
             tipoInput="default"
             texto="Senha"
             placeholder="*********"
-            erro="E-mail e/ou senha inválidos."
-            
+            onChangeText={setSenha}
+            erro={senhaErro}
           />
-          <Botao1 texto="Entrar" funcao={Entrar} />
+          <Botao1 texto="Entrar" funcao={handleLogin} />
         </View>
 
         <View style={estilos.botoesContainer}>
