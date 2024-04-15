@@ -1,6 +1,6 @@
 import {StyleSheet, View, Text, TextInput} from 'react-native';
 
-const InputText = props => {
+const InputText = (props, erro) => {
   const texto = props.texto;
   const secure = props.secure 
 
@@ -13,8 +13,9 @@ const InputText = props => {
         placeholder={props.placeholder}
         placeholderTextColor={'#3F92C5'}
         secureTextEntry={secure} //passe por props 'true' ou 'false'
+        onChangeText={props.onChangeText}
       />
-      <Text style={estilos.textoErrado}>{props.erro}</Text>
+      {erro ? <Text style={estilos.textoErrado}>{props.erro}</Text> : null}
     </View>
   );
 };

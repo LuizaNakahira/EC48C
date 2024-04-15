@@ -7,25 +7,49 @@ import Botao from '../components/Botao1';
 import InputText from '../components/InputText';
 import InputText_icon from '../components/InputText_icon';
 
-const nova_pesquisa = () => {
-    console.log('nova pesquisa')
-}
 
 const NovaPesquisa = () => {
     const [nome, setNome] = useState('')
     const [data, setData] = useState('')
     const [imagem, setImagem] = useState('')
 
+    const [nomeErro, setNomeErro] = useState('')
+    const [dataErro, setDataErro] = useState('')
+
+    const handleCadastro = () => {
+        let valid = true;
+    
+        if (nome.trim() === '') {
+          setNomeErro('Preencha o nome da pesquisa');
+          valid = false;
+        } else {
+          setNomeErro('');
+        }
+    
+        if (data.trim() === '') {
+          setDataErro('Preencha a data');
+          valid = false;
+        } else {
+          setDataErro('');
+        }
+    
+        if (valid) {
+          console.log('Cadastro realizado com sucesso');
+          // prosseguir com a lógica de cadastro
+        }
+      };
+
+
 
   return (
     <View style={estilos.containerGeral}>
         <Header texto={"Nova pesquisa"}/>
-        <ScrollView style={estilos.containerSecundario} contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', gap: 60, }}>
+        <ScrollView style={estilos.containerSecundario} contentContainerStyle={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center' }}>
             <View style={estilos.containerForms}>
                 <View style={estilos.containerInputs}>
-                    <InputText texto={"Nome"} erro="Preencha no nome da pesquisa" secure={false} tipoInput="default"/>
+                    <InputText texto={"Nome"} erro={nomeErro} secure={false} tipoInput="default" onChangeText={setNome}/>
                 
-                    <InputText_icon texto={"Data"} erro="Preencha a data" />
+                    <InputText_icon texto={"Data"} onChangeText={setData} erro={dataErro}  />
                     
                     <View style={estilos.camposInput}>
                         <Text style={estilos.label}>Imagem</Text>
@@ -33,7 +57,7 @@ const NovaPesquisa = () => {
                     </View>
                 </View>
                 
-                <Botao texto="CADASTRAR" funcao={"nova_pesquisa"}/>
+                <Botao texto="CADASTRAR" funcao={handleCadastro}/>
             </View>
         </ScrollView>
         
@@ -51,12 +75,12 @@ const estilos = StyleSheet.create({
       },
 
       containerSecundario: {
-        width: '80%',
+        width: '100%',
         display: 'flex',
       },
 
     containerForms: {
-        width: '100%',
+        width: '80%',
         display: 'flex',
         gap: 46,
         paddingVertical: 30,

@@ -1,7 +1,7 @@
 import {StyleSheet, View, Text, TextInput, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-const InputText_icon = (props) => {
+const InputText_icon = (props, erro) => {
   return (
     <View>
         <Text style={estilos.textoInput}>{props.texto}</Text>
@@ -11,12 +11,13 @@ const InputText_icon = (props) => {
                 style={estilos.textInput}
                 placeholder={props.placeholder} 
                 placeholderTextColor={'#3F92C5'}
+                onChangeText={props.onChangeText}
             />
             <TouchableOpacity style={estilos.calendarInput}>
                 <Icon name="calendar-month" size={40} color="#999998"/>
             </TouchableOpacity>
         </View>
-      <Text style={estilos.textoErrado}>{props.erro}</Text>
+        {erro ? <Text style={estilos.textoErrado}>{props.erro}</Text> : null}
     </View>
   );
 };
