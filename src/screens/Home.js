@@ -46,7 +46,7 @@ const estilos = StyleSheet.create({
     flexDirection: 'column',
     flex: 1,
     width: '90%',
-    justifyContent: 'space-around'
+    justifyContent: 'space-evenly'
   },
 });
 
