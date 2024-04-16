@@ -1,5 +1,4 @@
 import {View, Text, TouchableOpacity, StyleSheet, ScrollView} from 'react-native';
-import { useNavigation } from '@react-navigation/native'
 
 import { useState } from 'react';
 
@@ -12,12 +11,11 @@ import InputText_icon from '../components/InputText_icon';
 const NovaPesquisa = (props) => {
     const [nome, setNome] = useState('')
     const [data, setData] = useState('')
-    const [imagem, setImagem] = useState('')
+    //const [imagem, setImagem] = useState('')
 
     const [nomeErro, setNomeErro] = useState('')
     const [dataErro, setDataErro] = useState('')
 
-    const navigation = useNavigation()
 
 
     const handleCadastro = () => {
@@ -46,7 +44,7 @@ const NovaPesquisa = (props) => {
 
   return (
     <View style={estilos.containerGeral}>
-        <Header texto={"Nova pesquisa"} funcao={voltar} onPress={() => navigation.goBack()}/>
+        <Header texto={"Nova pesquisa"} onPress={voltar}/>
         <ScrollView style={estilos.containerSecundario} contentContainerStyle={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center' }}>
             <View style={estilos.containerForms}>
                 <View style={estilos.containerInputs}>
