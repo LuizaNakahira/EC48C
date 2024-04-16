@@ -1,11 +1,14 @@
 import React from 'react';
 import {View, Dimensions, StyleSheet, Text} from 'react-native';
 import {PieChart} from 'react-native-svg-charts';
+import {useNavigation} from '@react-navigation/native';
 
 import Header from '../components/Header';
 
 class Relatorio extends React.PureComponent {
   render() {
+    const navigation = useNavigation();
+
     const data = [
       {
         key: 'Excelente',
@@ -37,7 +40,7 @@ class Relatorio extends React.PureComponent {
 
     return (
       <View style={estilos.container}>
-        <Header texto="Relatório" />
+        <Header texto="Relatório" onPress={() => navigation.goBack()}/>
         <View style={estilos.relatorioContainer}>
           <PieChart
             style={estilos.pieChart}
@@ -78,8 +81,8 @@ const estilos = StyleSheet.create({
   },
 
   pieChart: {
-    height: 300, 
-    width: 250, 
+    height: 300,
+    width: 250,
     display: 'flex',
     marginLeft: '-10%',
   },

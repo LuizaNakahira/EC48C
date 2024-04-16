@@ -1,6 +1,6 @@
-import {StyleSheet, Text, View, TouchableOpacity, ScrollView} from 'react-native';
+import {StyleSheet, View, ScrollView} from 'react-native';
 import { useState } from 'react';
-
+import { useNavigation } from '@react-navigation/native'
 
 import Header from '../components/Header';
 import InputText from '../components/InputText';
@@ -17,6 +17,8 @@ const NovaConta = () => {
 
   const [senhaErro, setSenhaErro] = useState('')
 
+  const navigation = useNavigation()
+
   const handlePassword = () => {
     let valid = true;
 
@@ -30,13 +32,12 @@ const NovaConta = () => {
 
     if (valid) {
       console.log('Nova Conta realizado com sucesso');
-      // prosseguir com a lógica de cadastro
     }
   }
 
   return (
     <View style={estilos.containerGeral}>
-      <Header texto="Nova Conta"/>
+      <Header texto="Nova Conta" onPress={() => navigation.goBack()}/>
 
       <ScrollView style={estilos.containerSecundario} contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', gap: 60, }}>
         <View style={estilos.formularioContainer}>

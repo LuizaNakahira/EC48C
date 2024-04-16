@@ -1,10 +1,13 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import Drawer from './src/screens/Drawer';
-import Home from './src/screens/Home';
-import 'react-native-gesture-handler'
-import NovaPesquisa from './src/screens/NovaPesquisa';
+import 'react-native-gesture-handler';
 
+import Drawer from './src/screens/Drawer';
+
+import NovaPesquisa from './src/screens/NovaPesquisa';
+import Login from './src/screens/Login';
+import NovaConta from './src/screens/NovaConta';
+import RecuperacaoSenha from './src/screens/RecuperacaoSenha';
 
 const Stack = createStackNavigator();
 
@@ -12,11 +15,12 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
-        
-        
-        <Stack.Screen name="Drawer" component={Drawer}/>
-        <Stack.Screen name="NovaPesquisa" component={NovaPesquisa}/>
 
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Drawer" component={Drawer} />
+        <Stack.Screen name="NovaPesquisa" component={NovaPesquisa} />
+        <Stack.Screen name="NovaConta" component={NovaConta} />
+        <Stack.Screen name="RecuperacaoSenha" component={RecuperacaoSenha} />
       </Stack.Navigator>
     </NavigationContainer>
   );

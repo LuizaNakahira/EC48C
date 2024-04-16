@@ -1,22 +1,17 @@
-import {StyleSheet, Text, View, TouchableOpacity, ScrollView} from 'react-native';
-import { useState } from 'react';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
+import {useState} from 'react';
+import Icon from 'react-native-vector-icons/MaterialIcons'
+import { useNavigation } from '@react-navigation/native'
 
-import InputText from '../components/InputText';
-import Botao1 from '../components/Botao1';
+import InputText from '../components/InputText'
+import Botao1 from '../components/Botao1'
 
-const Entrar = () => {
-  console.log('Entrar')
-}
-
-const CriarConta = () => {
-  console.log('criar conta')
-}
-
-
-const EsqueciSenha = () => {
-  console.log('esqueci minha senha')
-}
 
 const Login = () => {
   const [email, setEmail] = useState('')
@@ -24,33 +19,35 @@ const Login = () => {
 
   const [senhaErro, setSenhaErro] = useState('')
 
-  const validarEmail = (email) => {
-    // Expressão regular para validar email
+  const navigation = useNavigation()
+
+  const validarEmail = email => {
+    //validar email
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     return regex.test(email)
-  }
+  };
 
   const handleLogin = () => {
-      let valid = true;
-  
-      if (email.trim() === '' || senha.trim() === '') {
-        setSenhaErro('E-mail e/ou senha inválidos.');
-        valid = false;
+    let valid = true
 
-      } else if (!validarEmail(email)) {
-        setSenhaErro('E-mail e/ou senha inválidos.');
-        valid = false;
+    if (email.trim() === '' || senha.trim() === '') {
+      setSenhaErro('E-mail e/ou senha inválidos.')
+      valid = false
 
-      } else {
-        setSenhaErro('');
-      }
-  
-      if (valid) {
-        console.log('Login realizado com sucesso');
-        // prosseguir com a lógica de cadastro
-      }
+    } else if (!validarEmail(email)) {
+      setSenhaErro('E-mail e/ou senha inválidos.')
+      valid = false
+
+    } else {
+      setSenhaErro('')
+      navigation.navigate('Drawer')
     }
-  
+
+    if (valid) {
+      console.log('Login realizado com sucesso')
+    }
+  };
+
   return (
     <View style={estilos.containerGeral}>
       <View style={estilos.tituloContainer}>
@@ -58,7 +55,13 @@ const Login = () => {
         <Icon name="sentiment-satisfied" size={55} color="#fff" />
       </View>
 
-      <ScrollView style={estilos.containerSecundario} contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', gap: 60, }}>
+      <ScrollView
+        style={estilos.containerSecundario}
+        contentContainerStyle={{
+          flexGrow: 1,
+          justifyContent: 'center',
+          gap: 60,
+        }}>
         <View style={estilos.formularioContainer}>
           <InputText
             tipoInput="email-address"
@@ -77,11 +80,13 @@ const Login = () => {
         </View>
 
         <View style={estilos.botoesContainer}>
-          <TouchableOpacity style={estilos.fundoBotaoAzul} onPress={CriarConta}>
+          <TouchableOpacity style={estilos.fundoBotaoAzul} onPress={() => navigation.navigate('NovaConta')}>
             <Text style={estilos.textoBotao}>Criar minha conta</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={estilos.fundoBotaoCinza} onPress={EsqueciSenha}>
+          <TouchableOpacity
+            style={estilos.fundoBotaoCinza}
+            onPress={() => navigation.navigate('RecuperacaoSenha')}>
             <Text style={estilos.textoBotao}>Esqueci minha senha</Text>
           </TouchableOpacity>
         </View>

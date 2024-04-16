@@ -1,4 +1,5 @@
-import {View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView} from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet, ScrollView} from 'react-native';
+import { useNavigation } from '@react-navigation/native'
 
 import { useState } from 'react';
 
@@ -15,6 +16,9 @@ const NovaPesquisa = (props) => {
 
     const [nomeErro, setNomeErro] = useState('')
     const [dataErro, setDataErro] = useState('')
+
+    const navigation = useNavigation()
+
 
     const handleCadastro = () => {
         let valid = true;
@@ -46,7 +50,7 @@ const NovaPesquisa = (props) => {
 
   return (
     <View style={estilos.containerGeral}>
-        <Header texto={"Nova pesquisa"} funcao={voltar}/>
+        <Header texto={"Nova pesquisa"} funcao={voltar} onPress={() => navigation.goBack()}/>
         <ScrollView style={estilos.containerSecundario} contentContainerStyle={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center' }}>
             <View style={estilos.containerForms}>
                 <View style={estilos.containerInputs}>
