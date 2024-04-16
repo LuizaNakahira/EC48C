@@ -9,7 +9,7 @@ import BotaoModal from '../components/BotaoModal'
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-const ModifPesquisa = () => {
+const ModifPesquisa = (props) => {
     const [modalVisible, setModalVisible] = useState(false);
 
     return (

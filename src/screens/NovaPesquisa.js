@@ -34,13 +34,14 @@ const NovaPesquisa = (props) => {
         }
     
         if (valid) {
-          console.log('Cadastro realizado com sucesso');
+          console.log('Cadastro realizado com sucesso'); //apenas para saber que funcionou
+          props.navigation.goBack()
           // prosseguir com a lógica de cadastro
         }
       };
 
       const voltar = () => {
-          props.navigation.goBack() //volta pra tela anterior a essa, nesse caso a home
+          props.navigation.goBack() //volta pra tela anterior a essa, nesse caso a home já que pra acessar essa tela é pela home
       }
 
   return (
