@@ -26,16 +26,12 @@ const NovaPesquisa = (props) => {
         if (nome.trim() === '') {
           setNomeErro('Preencha o nome da pesquisa');
           valid = false;
-        } else {
-          setNomeErro('');
-        }
+        } 
     
         if (data.trim() === '') {
           setDataErro('Preencha a data');
           valid = false;
-        } else {
-          setDataErro('');
-        }
+        } 
     
         if (valid) {
           console.log('Cadastro realizado com sucesso'); //apenas para saber que funcionou
