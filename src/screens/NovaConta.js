@@ -12,12 +12,22 @@ const NovaConta = (props) => {
 
   const [senhaErro, setSenhaErro] = useState('')
 
+  const validarEmail = email => {
+    //validar email
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return regex.test(email)
+  }
+
   const handlePassword = () => {
     let valid = true;
 
     if (senha.trim() === '' || novaSenha.trim() === '' || email.trim() === '') {
       valid = false
       setSenhaErro('Preencha todos os campos')
+
+    } else if (!validarEmail(email)) {
+      setSenhaErro('E-mail e/ou senha inválidos.')
+      valid = false
 
     } else if (senha.trim() === novaSenha.trim()){
       setSenhaErro('');
