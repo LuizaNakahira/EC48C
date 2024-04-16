@@ -3,14 +3,45 @@ import Botao1 from '../components/Botao1';
 import InputText from '../components/InputText';
 import Header from '../components/Header';
 import {useState} from 'react';
+import {useNavigation} from '@react-navigation/native';
 
-const RecuperacaoSenha = (props) => {
+const RecuperacaoSenha = props => {
+  const navigation = useNavigation();
+
   const [email, setEmail] = useState('');
+  const [emailErro, setEmailErro] = useState('');
+
+  const voltar = () => {
+    props.navigation.goBack();
+  };
+
+  const validarEmail = () => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  };
+
+  const handleRecuperacao = () => {
+    let valid = true;
+
+    if (email.trim() === '') {
+      setEmailErro('E-mail parece ser inválido.');
+      valid = false;
+    } else if (!validarEmail(email)) {
+      setEmailErro('E-mail parece ser inválido.');
+      valid = false;
+    }
+    if (valid) {
+      props.navigation.goBack();
+    }
+  };
 
   return (
     <View style={estilos.fundo}>
       <View style={estilos.headerContainer}>
-        <Header texto="Recuperação de senha" onPress={() => props.navigation.goBack()}/>
+        <Header
+          texto="Recuperação de senha"
+          onPress={() => navigation.goBack()}
+        />
       </View>
       <View style={estilos.fundoContainer}>
         <View>
