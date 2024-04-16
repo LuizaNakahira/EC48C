@@ -3,10 +3,8 @@ import Botao1 from '../components/Botao1';
 import InputText from '../components/InputText';
 import Header from '../components/Header';
 import {useState} from 'react';
-import {useNavigation} from '@react-navigation/native';
 
 const RecuperacaoSenha = props => {
-  const navigation = useNavigation();
 
   const [email, setEmail] = useState('');
   const [emailErro, setEmailErro] = useState('');
@@ -40,7 +38,7 @@ const RecuperacaoSenha = props => {
       <View style={estilos.headerContainer}>
         <Header
           texto="Recuperação de senha"
-          onPress={() => navigation.goBack()}
+          onPress={voltar}
         />
       </View>
       <View style={estilos.fundoContainer}>

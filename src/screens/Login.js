@@ -14,8 +14,8 @@ import Botao1 from '../components/Botao1'
 
 
 const Login = () => {
-  const [email, setEmail] = useState('')
-  const [senha, setSenha] = useState('')
+  const [email, setEmail] = useState('a@a.com')
+  const [senha, setSenha] = useState('233')
 
   const [senhaErro, setSenhaErro] = useState('')
 
