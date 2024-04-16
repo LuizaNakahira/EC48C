@@ -3,13 +3,10 @@ import Botao1 from '../components/Botao1';
 import InputText from '../components/InputText';
 import Header from '../components/Header';
 import {useState} from 'react';
-import { useNavigation } from '@react-navigation/native'
 
 
-const RecuperacaoSenha = () => {
-  const [email, setEmail] = useState('');
-  const navigation = useNavigation()
-
+const RecuperacaoSenha = (props) => {
+  const [email, setEmail] = useState('')
 
   return (
     <View style={estilos.fundo}>
