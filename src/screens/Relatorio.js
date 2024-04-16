@@ -1,70 +1,65 @@
 import React from 'react';
-import {View, Dimensions, StyleSheet, Text} from 'react-native';
-import {PieChart} from 'react-native-svg-charts';
-import {useNavigation} from '@react-navigation/native';
+import { View, StyleSheet, Text } from 'react-native';
+import { PieChart } from 'react-native-svg-charts';
 
 import Header from '../components/Header';
 
-class Relatorio extends React.PureComponent {
-  render() {
-    const navigation = useNavigation();
+const Relatorio = (props) => {
+  const data = [
+    {
+      key: 'Excelente',
+      value: 50,
+      svg: { fill: '#F1CE7E' },
+      arc: { outerRadius: '120%', cornerRadius: 0, padAngle: 0.2 },
+    },
+    {
+      key: 'Bom',
+      value: 40,
+      svg: { fill: '#6994FE' },
+    },
+    {
+      key: 'Neutro',
+      value: 20,
+      svg: { fill: '#5FCDA4' },
+    },
+    {
+      key: 'Ruim',
+      value: 30,
+      svg: { fill: '#EA7288' },
+    },
+    {
+      key: 'Péssimo',
+      value: 20,
+      svg: { fill: '#53D8D8' },
+    },
+  ];
 
-    const data = [
-      {
-        key: 'Excelente',
-        value: 50,
-        svg: {fill: '#F1CE7E'},
-        arc: {outerRadius: '120%', cornerRadius: 0, padAngle: 0.2},
-      },
-      {
-        key: 'Bom',
-        value: 40,
-        svg: {fill: '#6994FE'},
-      },
-      {
-        key: 'Neutro',
-        value: 20,
-        svg: {fill: '#5FCDA4'},
-      },
-      {
-        key: 'Ruim',
-        value: 30,
-        svg: {fill: '#EA7288'},
-      },
-      {
-        key: 'Péssimo',
-        value: 20,
-        svg: {fill: '#53D8D8'},
-      },
-    ];
+  return (
+    <View style={estilos.container}>
+      <Header texto="Relatório" onPress={() => props.navigation.goBack()} />
+      <View style={estilos.relatorioContainer}>
+        <PieChart
+          style={estilos.pieChart}
+          outerRadius={'83%'}
+          innerRadius={'10%'}
+          data={data}
+          padAngle={0}
+        />
 
-    return (
-      <View style={estilos.container}>
-        <Header texto="Relatório" onPress={() => navigation.goBack()}/>
-        <View style={estilos.relatorioContainer}>
-          <PieChart
-            style={estilos.pieChart}
-            outerRadius={'83%'}
-            innerRadius={'10%'}
-            data={data}
-            padAngle={0}
-          />
-
-          <View style={estilos.legendaContainer}>
-            {data.map((item, index) => (
-              <View key={index} style={estilos.legendaItem}>
-                <View
-                  style={[estilos.legendaCor, {backgroundColor: item.svg.fill}]}
-                />
-                <Text style={estilos.legendaTexto}>{item.key}</Text>
-              </View>
-            ))}
-          </View>
+        <View style={estilos.legendaContainer}>
+          {data.map((item, index) => (
+            <View key={index} style={estilos.legendaItem}>
+              <View
+                style={[estilos.legendaCor, { backgroundColor: item.svg.fill }]}
+              />
+              <Text style={estilos.legendaTexto}>{item.key}</Text>
+            </View>
+          ))}
         </View>
       </View>
-    );
-  }
-}
+    </View>
+  );
+};
 
 const estilos = StyleSheet.create({
   container: {

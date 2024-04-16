@@ -1,6 +1,5 @@
 import {ScrollView, StyleSheet, View, Text, TouchableOpacity, Modal, Alert} from 'react-native'
 import { useState } from 'react'
-import { useNavigation } from '@react-navigation/native'
 
 import Header from '../components/Header'
 import InputText  from '../components/InputText'
@@ -13,11 +12,9 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 const ModifPesquisa = (props) => {
     const [modalVisible, setModalVisible] = useState(false);
 
-    const navigation = useNavigation()
-
     return (
         <View style={estilos.containerGeral}>
-            <Header texto={"Modificar Pesquisa"} onPress={() => navigation.goBack()}/>
+            <Header texto={"Modificar Pesquisa"} onPress={() => props.navigation.goBack()}/>
             <ScrollView style={estilos.containerSecundario} contentContainerStyle={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center' }}>
                 <View style={estilos.containerForms}>
                     <View style={estilos.containerInputs}>

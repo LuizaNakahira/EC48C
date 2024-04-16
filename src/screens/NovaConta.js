@@ -1,34 +1,27 @@
 import {StyleSheet, View, ScrollView} from 'react-native';
 import { useState } from 'react';
-import { useNavigation } from '@react-navigation/native'
 
 import Header from '../components/Header';
 import InputText from '../components/InputText';
 import Botao1 from '../components/Botao1';
 
-const Cadastrar = () => {
-  console.log('cadastrar')
-}
-
-const NovaConta = () => {
+const NovaConta = (props) => {
   const [email, setEmail] = useState('')
   const [senha, setSenha] = useState('')
   const [novaSenha, setNovaSenha] = useState('')
 
   const [senhaErro, setSenhaErro] = useState('')
 
-  const navigation = useNavigation()
-
   const handlePassword = () => {
     let valid = true;
 
-    if (senha.trim() === novaSenha.trim()) {
-      setSenhaErro('');
-      navigation.navigate('Login')
-
-    } else if (senha.trim() === '' || novaSenha.trim() === '' || email.trim() === ''){
+    if (senha.trim() === '' || novaSenha.trim() === '' || email.trim() === '') {
       valid = false
       setSenhaErro('Preencha todos os campos')
+
+    } else if (senha.trim() === novaSenha.trim()){
+      setSenhaErro('');
+      props.navigation.navigate('Login')
       
     } else {
       valid = false
@@ -42,7 +35,7 @@ const NovaConta = () => {
 
   return (
     <View style={estilos.containerGeral}>
-      <Header texto="Nova Conta" onPress={() => navigation.goBack()}/>
+      <Header texto="Nova Conta" onPress={() => props.navigation.goBack()}/>
 
       <ScrollView style={estilos.containerSecundario} contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', gap: 60, }}>
         <View style={estilos.formularioContainer}>

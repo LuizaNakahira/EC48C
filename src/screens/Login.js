@@ -7,19 +7,16 @@ import {
 } from 'react-native';
 import {useState} from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons'
-import { useNavigation } from '@react-navigation/native'
 
 import InputText from '../components/InputText'
 import Botao1 from '../components/Botao1'
 
 
-const Login = () => {
+const Login = (props) => {
   const [email, setEmail] = useState('')
   const [senha, setSenha] = useState('')
 
   const [senhaErro, setSenhaErro] = useState('')
-
-  const navigation = useNavigation()
 
   const validarEmail = email => {
     //validar email
@@ -40,7 +37,7 @@ const Login = () => {
 
     } else {
       setSenhaErro('')
-      navigation.navigate('Drawer')
+      props.navigation.navigate('Drawer')
     }
 
     if (valid) {
@@ -80,13 +77,13 @@ const Login = () => {
         </View>
 
         <View style={estilos.botoesContainer}>
-          <TouchableOpacity style={estilos.fundoBotaoAzul} onPress={() => navigation.navigate('NovaConta')}>
+          <TouchableOpacity style={estilos.fundoBotaoAzul} onPress={() => props.navigation.navigate('NovaConta')}>
             <Text style={estilos.textoBotao}>Criar minha conta</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={estilos.fundoBotaoCinza}
-            onPress={() => navigation.navigate('RecuperacaoSenha')}>
+            onPress={() => props.navigation.navigate('RecuperacaoSenha')}>
             <Text style={estilos.textoBotao}>Esqueci minha senha</Text>
           </TouchableOpacity>
         </View>
