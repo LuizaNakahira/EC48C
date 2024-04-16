@@ -27,7 +27,7 @@ const DrawerContent = (props) => {
 
             <DrawerItem 
             contentContainerStyle={{justifyContent: 'flex-end'}}
-            labelStyle={{display: 'flex', color: 'white', fontSize: 22}} label="Sair" icon={() => <Icon name="logout" size={33} color="white" />} onPress={() => console.log("Adios muchacho")} />
+            labelStyle={{display: 'flex', color: 'white', fontSize: 22}} label="Sair" icon={() => <Icon name="logout" size={33} color="white" />} onPress={() => props.navigation.popToTop() }/>
         </DrawerContentScrollView>
     )
 }
