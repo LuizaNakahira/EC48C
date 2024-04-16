@@ -25,6 +25,7 @@ const NovaConta = () => {
     if (senha.trim() === novaSenha.trim()) {
       setSenhaErro('');
       valid = false;
+      navigation.navigate('Login')
 
     } else {
       setSenhaErro('O campo repetir senha difere da senha');
