@@ -20,7 +20,7 @@ const estilos = StyleSheet.create({
         paddingVertical: 8,
     },
     textoBotao: {
-        fontSize: 20,
+        fontSize: 25,
         color: 'white',
         fontFamily: 'AveriaLibre-Regular'
     }

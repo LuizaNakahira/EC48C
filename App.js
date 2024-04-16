@@ -3,6 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import Drawer from './src/screens/Drawer';
 import Home from './src/screens/Home';
 import 'react-native-gesture-handler'
+import NovaPesquisa from './src/screens/NovaPesquisa';
 
 
 const Stack = createStackNavigator();
@@ -14,6 +15,7 @@ const App = () => {
         
         
         <Stack.Screen name="Drawer" component={Drawer}/>
+        <Stack.Screen name="NovaPesquisa" component={NovaPesquisa}/>
 
       </Stack.Navigator>
     </NavigationContainer>

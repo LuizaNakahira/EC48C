@@ -9,6 +9,10 @@ const Home = (props) => {
     props.navigation.navigate('Drawer');
   }
 
+  const goToNovaPesquisa = () => {
+    props.navigation.navigate('NovaPesquisa')
+  }
+
   return (
     <View style={estilos.fundo}>     
 
@@ -19,7 +23,7 @@ const Home = (props) => {
         <MyCarousel />
         </View>
         
-        <Botao1 texto="NOVA PESQUISA" />
+        <Botao1 texto="NOVA PESQUISA" funcao={goToNovaPesquisa}/>
       </View>
 
     </View>

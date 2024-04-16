@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 const Header = props => {
   return (
     <View style={estilos.headerContainer}>
-      <TouchableOpacity onPress={console.log('voltar')}>
+      <TouchableOpacity onPress={props.funcao}>
         <Icon name="arrow-back" size={36} color="#573FBA" />
       </TouchableOpacity>
       <Text style={estilos.texto}>{props.texto}</Text>

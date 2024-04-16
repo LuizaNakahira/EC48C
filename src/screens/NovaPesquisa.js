@@ -8,7 +8,7 @@ import InputText from '../components/InputText';
 import InputText_icon from '../components/InputText_icon';
 
 
-const NovaPesquisa = () => {
+const NovaPesquisa = (props) => {
     const [nome, setNome] = useState('')
     const [data, setData] = useState('')
     const [imagem, setImagem] = useState('')
@@ -39,11 +39,13 @@ const NovaPesquisa = () => {
         }
       };
 
-
+      const voltar = () => {
+          props.navigation.goBack() //volta pra tela anterior a essa, nesse caso a home
+      }
 
   return (
     <View style={estilos.containerGeral}>
-        <Header texto={"Nova pesquisa"}/>
+        <Header texto={"Nova pesquisa"} funcao={voltar}/>
         <ScrollView style={estilos.containerSecundario} contentContainerStyle={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center' }}>
             <View style={estilos.containerForms}>
                 <View style={estilos.containerInputs}>
@@ -87,7 +89,7 @@ const estilos = StyleSheet.create({
     },
 
     containerInputs: {
-        gap: 13,
+        gap: 10,
         width: '100%'
     },
 
