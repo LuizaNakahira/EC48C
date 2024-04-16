@@ -24,11 +24,15 @@ const NovaConta = () => {
 
     if (senha.trim() === novaSenha.trim()) {
       setSenhaErro('');
-      valid = false;
       navigation.navigate('Login')
 
+    } else if (senha.trim() === '' || novaSenha.trim() === '' || email.trim() === ''){
+      valid = false
+      setSenhaErro('Preencha todos os campos')
+      
     } else {
-      setSenhaErro('O campo repetir senha difere da senha');
+      valid = false
+      setSenhaErro('O campo repetir senha difere da senha')
     }
 
     if (valid) {
