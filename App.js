@@ -9,6 +9,7 @@ import Login from './src/screens/Login';
 import NovaConta from './src/screens/NovaConta';
 import RecuperacaoSenha from './src/screens/RecuperacaoSenha';
 import Relatorio from './src/screens/Relatorio';
+import ModifPesquisa from './src/screens/ModifPesquisa';
 
 const Stack = createStackNavigator();
 
@@ -24,6 +25,7 @@ const App = () => {
         <Stack.Screen name="NovaPesquisa" component={NovaPesquisa} />
         <Stack.Screen name="NovaConta" component={NovaConta} />
         <Stack.Screen name="RecuperacaoSenha" component={RecuperacaoSenha} />
+        <Stack.Screen name="ModifPesquisa" component={ModifPesquisa} />
       </Stack.Navigator>
     </NavigationContainer>
   );

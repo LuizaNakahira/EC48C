@@ -12,9 +12,14 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 const ModifPesquisa = (props) => {
     const [modalVisible, setModalVisible] = useState(false);
 
+    
+    const handleModifPesquisa = () => {
+        props.navigation.navigate('Drawer');
+    }
+
     return (
         <View style={estilos.containerGeral}>
-            <Header texto={"Modificar Pesquisa"} onPress={() => props.navigation.goBack()}/>
+            <Header texto={"Modificar Pesquisa"} onPress={handleModifPesquisa} />
             <ScrollView style={estilos.containerSecundario} contentContainerStyle={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center' }}>
                 <View style={estilos.containerForms}>
                     <View style={estilos.containerInputs}>
@@ -30,7 +35,7 @@ const ModifPesquisa = (props) => {
                         </View>
                     </View>
 
-                    <Botao1 texto="SALVAR" funcao={"modif_pesquisa"} />
+                    <Botao1 texto="SALVAR" funcao={handleModifPesquisa} />
                 </View>
 
                 <Modal
@@ -38,7 +43,6 @@ const ModifPesquisa = (props) => {
                     transparent={true}
                     visible={modalVisible}
                     onRequestClose={()=>{
-                        Alert.alert('Modal irá fechar');
                         setModalVisible(!modalVisible);
                     }}
                 >
@@ -46,7 +50,12 @@ const ModifPesquisa = (props) => {
                         <View style={estilos.modalView}>
                             <Text style={estilos.modalText}>Tem certeza de apagar essa pesquisa?</Text>
                             <View style={estilos.modalButtons}>
-                                <BotaoModal texto="SIM" backColor="#FF8383"/>
+                                <BotaoModal texto="SIM" backColor="#FF8383" 
+                                    onPress={() => {
+                                        handleModifPesquisa(); 
+                                        setModalVisible(!modalVisible)
+                                    }}
+                                />
                                 <BotaoModal texto="CANCELAR" backColor="#3F92C5" onPress={() => setModalVisible(!modalVisible)}/>
                             </View>
                         </View>
@@ -142,7 +151,7 @@ const estilos = StyleSheet.create({
       modalView: {
         backgroundColor: '#2B1F5C',
         display: 'flex',
-        width: '85%',
+        width: '50%',
         paddingVertical: 25,
         paddingHorizontal: 50,
         alignItems: 'center',
@@ -152,7 +161,6 @@ const estilos = StyleSheet.create({
 
       modalText: {
         fontFamily: 'AveriaLibre-Bold',
-        width: '50%',
         color: 'white',
         fontSize: 25,
         textAlign: 'center'
