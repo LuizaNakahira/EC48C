@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
-//import { PieChart } from 'react-native-svg-charts';
+import { PieChart } from 'react-native-svg-charts';
 
 import Header from '../components/Header';
 

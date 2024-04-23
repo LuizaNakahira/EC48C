@@ -2,6 +2,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import 'react-native-gesture-handler';
 
+import { LogBox } from 'react-native';
+
 import Drawer from './src/screens/Drawer';
 
 import NovaPesquisa from './src/screens/NovaPesquisa';
@@ -14,11 +16,14 @@ import ModifPesquisa from './src/screens/ModifPesquisa';
 const Stack = createStackNavigator();
 
 const App = () => {
+  LogBox.ignoreLogs(['Warning: ...']);
+  LogBox.ignoreAllLogs();
+
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
 
-
+      
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Relatorio" component={Relatorio} />
         <Stack.Screen name="Drawer" component={Drawer} />
