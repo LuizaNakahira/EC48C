@@ -2,7 +2,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import 'react-native-gesture-handler';
 
-import { LogBox } from 'react-native';
+import {LogBox} from 'react-native';
 
 import Drawer from './src/screens/Drawer';
 
@@ -12,6 +12,9 @@ import NovaConta from './src/screens/NovaConta';
 import RecuperacaoSenha from './src/screens/RecuperacaoSenha';
 import Relatorio from './src/screens/Relatorio';
 import ModifPesquisa from './src/screens/ModifPesquisa';
+import Agradecimento from './src/screens/Agradecimento';
+import AcoesPesquisa from './src/screens/AcoesPesquisa';
+import Coleta from './src/screens/Coleta';
 
 const Stack = createStackNavigator();
 
@@ -22,8 +25,11 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen name="Coleta" component={Coleta} />
+        <Stack.Screen name="AcoesPesquisa" component={AcoesPesquisa} />
+        <Stack.Screen name="Agradecimento" component={Agradecimento} />
 
-      
+        
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Relatorio" component={Relatorio} />
         <Stack.Screen name="Drawer" component={Drawer} />
