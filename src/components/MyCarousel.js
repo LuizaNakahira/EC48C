@@ -1,10 +1,11 @@
 import React from 'react';
-import {FlatList, Dimensions} from 'react-native';
+import {FlatList, Dimensions, TouchableOpacity} from 'react-native';
 import Card from './Card';
 
 const {width} = Dimensions.get('window');
 
-const MyCarousel = () => {
+const MyCarousel = (props) => {
+
   const data = [
     {
       title: 'SECOMP 2023',
@@ -32,10 +33,14 @@ const MyCarousel = () => {
     },
   ];
 
-  const renderItem = ({item}) => <Card item={item} />;
+  const renderItem = ({item}) => (
+    <TouchableOpacity onPress={props.onPress}>
+      <Card item={item} />
+    </TouchableOpacity>
+  );
 
   return (
-    <FlatList
+    <FlatList 
       data={data}
       keyExtractor={(item, index) => index.toString()}
       showsHorizontalScrollIndicator={false}

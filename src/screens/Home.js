@@ -1,7 +1,8 @@
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, TouchableOpacity} from 'react-native';
 import Botao1 from '../components/Botao1';
 import Search from '../components/Search';
 import MyCarousel from '../components/MyCarousel';
+import AcoesPesquisa from './AcoesPesquisa';
 
 const Home = (props) => {
 
@@ -13,6 +14,10 @@ const Home = (props) => {
     props.navigation.navigate('NovaPesquisa')
   }
 
+  const goToAcoesPesquisa = () => {
+    props.navigation.navigate('AcoesPesquisa')
+  }
+
   return (
     <View style={estilos.fundo}>     
 
@@ -20,7 +25,7 @@ const Home = (props) => {
         <Search />
         
         <View style={estilos.containerCarousel}>
-        <MyCarousel />
+        <MyCarousel onPress={goToAcoesPesquisa} />
         </View>
         
         <Botao1 texto="NOVA PESQUISA" funcao={goToNovaPesquisa}/>

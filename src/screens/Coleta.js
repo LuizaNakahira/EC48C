@@ -1,45 +1,55 @@
+import { useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-const Coleta  = () => {
+
+const Coleta  = (props) => {
+
+    const goToAgradecimento = () => {
+        props.navigation.navigate('Agradecimento')
+    }      
+
     return (
       <View style={estilos.containerGeral}>
 
-            <View style={estilos.containerTexto}>
-                <Text style={estilos.texto}> O que você achou do Carnaval 2024? </Text>
-            </View>
+        <TouchableOpacity style={estilos.botaoInvisivel} onPress={() => props.navigation.navigate('AcoesPesquisa')}>
+        </TouchableOpacity>
+
+        <View style={estilos.containerTexto}>
+            <Text style={estilos.texto}> O que você achou do Carnaval 2024? </Text>
+        </View>
 
           <View style={estilos.containerBotoes}>
             <View style={estilos.containerBotao}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => props.navigation.navigate('Agradecimento')}>
                 <Icon name="sentiment-very-dissatisfied" size={70} color="#D71616" />
                 </TouchableOpacity>
                 <Text style={estilos.legenda}> Péssimo </Text>
             </View>
 
             <View style={estilos.containerBotao}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => props.navigation.navigate('Agradecimento')}>
                 <Icon name="sentiment-dissatisfied" size={70} color="#FF360A" />
                 </TouchableOpacity>
                 <Text style={estilos.legenda}> Ruim </Text>
             </View>
 
             <View style={estilos.containerBotao}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => props.navigation.navigate('Agradecimento')}>
                 <Icon name="sentiment-neutral" size={70} color="#FFC632" />
                 </TouchableOpacity>
                 <Text style={estilos.legenda}> Neutro </Text>
             </View>
 
             <View style={estilos.containerBotao}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => props.navigation.navigate('Agradecimento')}>
                 <Icon name="sentiment-satisfied-alt" size={70} color="#37BD6D" />
                 </TouchableOpacity>
                 <Text style={estilos.legenda}> Bom </Text>
             </View>
 
             <View style={estilos.containerBotao}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => props.navigation.navigate('Agradecimento')}>
                 <Icon name="sentiment-very-satisfied" size={70} color="#25BC22" />
                 </TouchableOpacity>
                 <Text style={estilos.legenda}> Excelente </Text>
@@ -52,6 +62,14 @@ const Coleta  = () => {
 
 const estilos = StyleSheet.create({
 
+    botaoInvisivel: {
+        width: 50,
+        height: 50,
+        position: 'absolute',
+        top: 0,
+        right:0
+    },
+
     containerGeral: {
         flex: 1,
         backgroundColor: '#372775',
@@ -59,7 +77,6 @@ const estilos = StyleSheet.create({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        
     },
 
     containerTexto: {

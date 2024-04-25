@@ -25,11 +25,6 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="Coleta" component={Coleta} />
-        <Stack.Screen name="AcoesPesquisa" component={AcoesPesquisa} />
-        <Stack.Screen name="Agradecimento" component={Agradecimento} />
-
-        
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Relatorio" component={Relatorio} />
         <Stack.Screen name="Drawer" component={Drawer} />
@@ -37,6 +32,9 @@ const App = () => {
         <Stack.Screen name="NovaConta" component={NovaConta} />
         <Stack.Screen name="RecuperacaoSenha" component={RecuperacaoSenha} />
         <Stack.Screen name="ModifPesquisa" component={ModifPesquisa} />
+        <Stack.Screen name="AcoesPesquisa" component={AcoesPesquisa} />
+        <Stack.Screen name="Coleta" component={Coleta} />
+        <Stack.Screen name="Agradecimento" component={Agradecimento} />
       </Stack.Navigator>
     </NavigationContainer>
   );

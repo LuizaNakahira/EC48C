@@ -1,6 +1,17 @@
 import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect } from 'react';
 
-const Agradecimento  = () => {
+const Agradecimento  = (props) => {
+
+    useEffect(() => {
+        const goBack = setTimeout(() => {
+            props.navigation.navigate('Coleta');
+        }, 3000); 
+    
+        return () => clearTimeout(goBack);
+    }, []);
+    
+
     return(
         <View style={estilos.container}>
             <Text style={estilos.texto}> Obrigado por participar da pesquisa! </Text>
