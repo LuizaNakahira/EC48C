@@ -1,5 +1,9 @@
 import {View, Text, TouchableOpacity, StyleSheet, ScrollView} from 'react-native';
 import { useState } from 'react';
+import {collection, addDoc} from 'firebase/firestore'
+import { db } from '../config/firebase';
+import 'firebase/firestore'
+
 
 import Header from '../components/Header';
 import Botao from '../components/Botao1';
@@ -8,6 +12,8 @@ import InputText_icon from '../components/InputText_icon';
 
 
 const NovaPesquisa = (props) => {
+    const pesquisaCollection = collection(db, "novaPesquisa")
+
     const [nome, setNome] = useState('')
     const [data, setData] = useState('')
     //const [imagem, setImagem] = useState('')
@@ -15,8 +21,14 @@ const NovaPesquisa = (props) => {
     const [nomeErro, setNomeErro] = useState('')
     const [dataErro, setDataErro] = useState('')
 
+    
+
     const handleCadastro = () => {
         let valid = true;
+        const docPesquisa = {
+            nome: nome,
+            data: data,
+        }
     
         if (nome.trim() === '') {
           setNomeErro('Preencha o nome da pesquisa');
@@ -29,9 +41,12 @@ const NovaPesquisa = (props) => {
         } 
     
         if (valid) {
-          console.log('Cadastro realizado com sucesso'); //apenas para saber que funcionou
-          props.navigation.goBack()
-          // prosseguir com a lógica de cadastro
+            addDoc(pesquisaCollection, docPesquisa).then((docRef) => {
+                console.log("pesquisa cadastrada: " + docRef.id)
+                props.navigation.goBack()
+            }).catch((erro) => {
+                console.log("Erro: " + erro)
+            })
         }
       };
 
@@ -45,9 +60,9 @@ const NovaPesquisa = (props) => {
         <ScrollView style={estilos.containerSecundario} contentContainerStyle={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center' }}>
             <View style={estilos.containerForms}>
                 <View style={estilos.containerInputs}>
-                    <InputText texto={"Nome"} erro={nomeErro} secure={false} tipoInput="default" onChangeText={setNome}/>
+                    <InputText texto={"Nome"} erro={nomeErro} secure={false} tipoInput="default" onChangeText={setNome} value={nome}/>
                 
-                    <InputText_icon texto={"Data"} onChangeText={setData} erro={dataErro}  />
+                    <InputText_icon texto={"Data"} onChangeText={setData} erro={dataErro} value={data} placeholder={"DD/MM/YYYY"}/>
                     
                     <View style={estilos.camposInput}>
                         <Text style={estilos.label}>Imagem</Text>

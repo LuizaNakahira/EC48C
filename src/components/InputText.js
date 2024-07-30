@@ -14,6 +14,7 @@ const InputText = (props, erro) => {
         placeholderTextColor={'#3F92C5'}
         secureTextEntry={secure} //passe por props 'true' ou 'false'
         onChangeText={props.onChangeText}
+        value={props.value}
       />
       {erro ? <Text style={estilos.textoErrado}>{props.erro}</Text> : null}
     </View>

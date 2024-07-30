@@ -2,6 +2,21 @@ import {StyleSheet, View, Text, TextInput, TouchableOpacity} from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const InputText_icon = (props, erro) => {
+
+  const handleChange = (input) => {
+    // Remove qualquer caractere que não seja número
+    let formattedInput = input.replace(/[^0-9]/g, '');
+
+    // Formata a data para DD/MM/YYYY
+    if (formattedInput.length > 2 && formattedInput.length <= 4) {
+      formattedInput = `${formattedInput.slice(0, 2)}/${formattedInput.slice(2, 4)}`;
+    } else if (formattedInput.length > 4) {
+      formattedInput = `${formattedInput.slice(0, 2)}/${formattedInput.slice(2, 4)}/${formattedInput.slice(4, 8)}`;
+    }
+
+    props.onChangeText(formattedInput);
+  };
+
   return (
     <View>
         <Text style={estilos.textoInput}>{props.texto}</Text>
@@ -11,7 +26,9 @@ const InputText_icon = (props, erro) => {
                 style={estilos.textInput}
                 placeholder={props.placeholder} 
                 placeholderTextColor={'#3F92C5'}
-                onChangeText={props.onChangeText}
+                onChangeText={handleChange}
+                value={props.value}
+                maxLength={10} // Limita a entrada ao formato DD/MM/YYYY
             />
             <TouchableOpacity style={estilos.calendarInput}>
                 <Icon name="calendar-month" size={40} color="#999998"/>
