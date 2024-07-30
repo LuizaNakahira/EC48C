@@ -1,39 +1,33 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {FlatList, Dimensions, TouchableOpacity} from 'react-native';
 import Card from './Card';
+import { db } from '../config/firebase';
+import {collection, query, onSnapshot} from 'firebase/firestore'
 
 const {width} = Dimensions.get('window');
 
 const MyCarousel = (props) => {
+  const pesquisaCollection = collection(db, "novaPesquisa")
+  const [listaPesquisa, setListaPesquisa] = useState()
 
-  const data = [
-    {
-      title: 'SECOMP 2023',
-      iconName: 'devices',
-      color: '#A52A2A',
-      date: '10/10/2023',
-    },
-    {
-      title: 'UBUNTU 2022',
-      iconName: 'groups',
-      color: '#708090',
-      date: '05/06/2022',
-    },
-    {
-      title: 'MENINAS CPU',
-      iconName: 'woman',
-      color: '#800000',
-      date: '01/04/2022',
-    },
-    {
-      title: 'GUARDA-CHUVA',
-      iconName: 'beach-access',
-      color: '#00FF00',
-      date: '07/04/2024',
-    },
-  ];
+  useEffect( () => {
+    const q = query (pesquisaCollection)
 
-  const renderItem = ({item}) => (
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const pesquisa = []
+      snapshot.forEach((doc) => {
+        pesquisa.push({
+          id: doc.id,
+          ...doc.data()
+        })
+      })
+
+      setListaPesquisa(pesquisa)
+
+    })
+  }, [])
+
+  const itemPesquisa = ({item}) => (
     <TouchableOpacity onPress={props.onPress}>
       <Card item={item} />
     </TouchableOpacity>
@@ -41,18 +35,18 @@ const MyCarousel = (props) => {
 
   return (
     <FlatList 
-      data={data}
+      data={listaPesquisa}
+      renderItem = {itemPesquisa}
       keyExtractor={(item, index) => index.toString()}
       showsHorizontalScrollIndicator={false}
-      snapToOffsets={[...Array(data.length)].map(
-        (_, i) => i * (width * 0.8 - 40) + (i - 1) * 40,
-      )}
+      // snapToOffsets={[...Array(pesquisa.length)].map(
+      //   (_, i) => i * (width * 0.8 - 40) + (i - 1) * 40,
+      // )}
       horizontal
       contentContainerStyle={{gap: 20}}
       snapToAlignment={'start'}
       scrollEventThrottle={16}
       decelerationRate="fast"
-      renderItem={renderItem}
     />
   );
 };

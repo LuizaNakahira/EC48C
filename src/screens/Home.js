@@ -4,6 +4,8 @@ import Search from '../components/Search';
 import MyCarousel from '../components/MyCarousel';
 import AcoesPesquisa from './AcoesPesquisa';
 
+
+
 const Home = (props) => {
 
   const goToDrawer = () => {

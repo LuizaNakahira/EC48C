@@ -8,9 +8,9 @@ const Card = ({item}) => {
   return (
     <View style={styles.itemContainer}>
       <View style={styles.square}>
-        <Icon name={item.iconName} size={100} color={item.color} />
-        <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.date}>{item.date}</Text>
+        <Icon name={item.imagem} size={100} color={item.color} />
+        <Text style={styles.title}>{item.nome}</Text>
+        <Text style={styles.date}>{item.data}</Text>
       </View>
     </View>
   );
