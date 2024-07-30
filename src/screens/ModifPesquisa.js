@@ -1,5 +1,7 @@
 import {ScrollView, StyleSheet, View, Text, TouchableOpacity, Modal, Alert} from 'react-native'
 import { useState } from 'react'
+import { db } from '../config/firebase'
+import {doc, updateDoc, deleteDoc} from 'firebase/firestore'
 
 import Header from '../components/Header'
 import InputText  from '../components/InputText'
