@@ -19,7 +19,7 @@ const estilos = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 17,
+    paddingVertical: 12,
     paddingHorizontal: 14,
     gap: 20,
   },

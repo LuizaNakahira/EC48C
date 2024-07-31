@@ -7,6 +7,8 @@ import {
 } from 'react-native';
 import {useState} from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth_mod } from '../config/firebase';
 
 import InputText from '../components/InputText'
 import Botao1 from '../components/Botao1'
@@ -37,19 +39,50 @@ const Login = (props) => {
 
     } else {
       setSenhaErro('')
-      props.navigation.navigate('Drawer')
     }
 
     if (valid) {
-      console.log('Login realizado com sucesso')
+      autenticar();
     }
   };
+
+  const autenticar = () => {
+    signInWithEmailAndPassword(auth_mod, email, senha)
+      .then(() => {
+        setEmail('');
+        setSenha('');
+        props.navigation.navigate('Drawer')
+      })
+
+      .catch((error) => {
+        switch (error.code) {
+          case 'auth/invalid-email':
+            setSenhaErro('E-mail e/ou senha inválidos.');
+            break;
+          case 'auth/user-disabled':
+            setSenhaErro('Usuário desativado.');
+            break;
+          case 'auth/user-not-found':
+            setSenhaErro('Usuário não encontrado.');
+            break;
+          case 'auth/wrong-password':
+            setSenhaErro('E-mail e/ou senha inválidos.');
+            break;
+          case 'auth/network-request-failed':
+            setSenhaErro('Falha na rede. Verifique sua conexão com a internet.');
+            break;
+          default:
+            setSenhaErro('Erro ao autenticar. Tente novamente.');
+            break;
+        }
+      })
+  }
 
   return (
     <View style={estilos.containerGeral}>
       <View style={estilos.tituloContainer}>
         <Text style={estilos.titulo}>Satisfying.you</Text>
-        <Icon name="sentiment-satisfied" size={55} color="#fff" />
+        <Icon name="sentiment-satisfied" size={44} color="#fff" />
       </View>
 
       <ScrollView
@@ -57,7 +90,7 @@ const Login = (props) => {
         contentContainerStyle={{
           flexGrow: 1,
           justifyContent: 'center',
-          gap: 60,
+          gap: 16,
         }}>
         <View style={estilos.formularioContainer}>
           <InputText
@@ -65,25 +98,35 @@ const Login = (props) => {
             texto="E-mail"
             placeholder="jurandir.pereira@hotmail.com"
             onChangeText={setEmail}
+            value={email}
           />
           <InputText
-            tipoInput="default"
+            tipoInput="visible-password"
             texto="Senha"
             placeholder="*********"
             onChangeText={setSenha}
             erro={senhaErro}
+            value={senha}
           />
           <Botao1 texto="Entrar" funcao={handleLogin} />
         </View>
 
         <View style={estilos.botoesContainer}>
-          <TouchableOpacity style={estilos.fundoBotaoAzul} onPress={() => props.navigation.navigate('NovaConta')}>
+          <TouchableOpacity style={estilos.fundoBotaoAzul} onPress={() => {
+            setEmail('');
+            setSenha('');
+            props.navigation.navigate('NovaConta')
+          }}>
             <Text style={estilos.textoBotao}>Criar minha conta</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={estilos.fundoBotaoCinza}
-            onPress={() => props.navigation.navigate('RecuperacaoSenha')}>
+            onPress={() => {
+              setEmail('');
+              setSenha('');
+              props.navigation.navigate('RecuperacaoSenha')
+            }}>
             <Text style={estilos.textoBotao}>Esqueci minha senha</Text>
           </TouchableOpacity>
         </View>
@@ -98,7 +141,7 @@ const estilos = StyleSheet.create({
     backgroundColor: '#372775',
     display: 'flex',
     alignItems: 'center',
-    paddingVertical: 30,
+    paddingVertical: 20,
   },
 
   tituloContainer: {
@@ -108,7 +151,7 @@ const estilos = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     gap: 28,
-    paddingBottom: 20,
+    paddingBottom: 16,
   },
 
   containerSecundario: {
@@ -117,7 +160,7 @@ const estilos = StyleSheet.create({
   },
 
   titulo: {
-    fontSize: 44,
+    fontSize: 34,
     fontFamily: 'AveriaLibre-Regular',
     color: '#fff',
   },
@@ -125,7 +168,6 @@ const estilos = StyleSheet.create({
   formularioContainer: {
     width: '100%',
     display: 'flex',
-    gap: 20,
   },
 
   botoesContainer: {
@@ -153,7 +195,7 @@ const estilos = StyleSheet.create({
   },
 
   textoBotao: {
-    fontSize: 20,
+    fontSize: 16,
     color: 'white',
     fontFamily: 'AveriaLibre-Regular',
   },

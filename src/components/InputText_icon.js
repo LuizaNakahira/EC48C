@@ -24,7 +24,7 @@ const InputText_icon = (props, erro) => {
 
 const estilos = StyleSheet.create({
   textoInput: {
-    fontSize: 25,
+    fontSize: 16,
     color: 'white',
     fontFamily: 'AveriaLibre-Regular',
     marginBottom: 5,
@@ -38,7 +38,7 @@ const estilos = StyleSheet.create({
     color: "black",
     paddingHorizontal: 10,
     paddingLeft: 15,
-    fontSize: 20,
+    fontSize: 16,
     color: '#3F92C5',
 },
   containerData: {

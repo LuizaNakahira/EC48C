@@ -1,5 +1,7 @@
 import {StyleSheet, View, ScrollView} from 'react-native';
 import { useState } from 'react';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth_mod } from '../config/firebase';
 
 import Header from '../components/Header';
 import InputText from '../components/InputText';
@@ -31,7 +33,6 @@ const NovaConta = (props) => {
 
     } else if (senha.trim() === novaSenha.trim()){
       setSenhaErro('');
-      props.navigation.navigate('Login')
       
     } else {
       valid = false
@@ -39,8 +40,41 @@ const NovaConta = (props) => {
     }
 
     if (valid) {
-      console.log('Nova Conta realizado com sucesso');
+      cadastrarUsuario();
     }
+  }
+
+  const cadastrarUsuario = () => {
+    createUserWithEmailAndPassword(auth_mod, email, senha)
+      .then(() => {
+        setEmail('');
+        setSenha('');
+        setNovaSenha('');
+        props.navigation.navigate('Login')
+      })
+
+      .catch((error) => {
+        switch (error.code) {
+          case 'auth/invalid-email':
+            setSenhaErro('E-mail e/ou senha inválidos.');
+            break;
+          case 'auth/email-already-in-use':
+            setSenhaErro('Este endereço de e-mail já está sendo usado por outra conta.');
+            break;
+          case 'auth/operation-not-allowed':
+            setSenhaErro('O cadastro de novos usuários está desativado.');
+            break;
+          case 'auth/weak-password':
+            setSenhaErro('A senha é muito fraca. Escolha uma senha mais forte.');
+            break;
+          case 'auth/network-request-failed':
+            setSenhaErro('Falha na rede. Verifique sua conexão com a internet.');
+            break;
+          default:
+            setSenhaErro('Erro ao autenticar. Tente novamente.');
+            break;
+        }
+      })
   }
 
   return (
@@ -54,12 +88,14 @@ const NovaConta = (props) => {
             texto="E-mail"
             placeholder="jurandir.pereira@hotmail.com"
             onChangeText={setEmail}
+            value={email}
           />
           <InputText
-            tipoInput="default"
+            tipoInput="visible-password"
             texto="Senha"
             placeholder="*********"
             onChangeText={setSenha}
+            value={senha}
             
           />
           <InputText
@@ -91,8 +127,7 @@ const estilos = StyleSheet.create({
   formularioContainer: {
     width: '100%',
     display: 'flex',
-    gap: 20,
-    paddingVertical: 30,
+    paddingVertical: 20,
   },
 });
 

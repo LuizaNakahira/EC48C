@@ -14,6 +14,7 @@ const InputText = (props, erro) => {
         placeholderTextColor={'#3F92C5'}
         secureTextEntry={secure} //passe por props 'true' ou 'false'
         onChangeText={props.onChangeText}
+        value={props.value}
       />
       {erro ? <Text style={estilos.textoErrado}>{props.erro}</Text> : null}
     </View>
@@ -22,7 +23,7 @@ const InputText = (props, erro) => {
 
 const estilos = StyleSheet.create({
   textoInput: {
-    fontSize: 25,
+    fontSize: 16,
     color: 'white',
     fontFamily: 'AveriaLibre-Regular',
     marginBottom: 5,
@@ -34,12 +35,12 @@ const estilos = StyleSheet.create({
     paddingLeft: 15,
     fontFamily: 'AveriaLibre-Regular',
     color: '#3F92C5',
-    fontSize: 20
+    fontSize: 16
   },
   textoErrado: {
     color: '#FD7979',
     fontFamily: 'AveriaLibre-Regular',
-    marginVertical: 5,
+    marginVertical: 0,
   },
 });
 

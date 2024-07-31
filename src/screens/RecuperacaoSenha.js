@@ -4,6 +4,8 @@ import InputText from '../components/InputText';
 import Header from '../components/Header';
 import {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
+import { sendPasswordResetEmail } from 'firebase/auth';
+import { auth_mod } from '../config/firebase';
 
 const RecuperacaoSenha = props => {
   const navigation = useNavigation();
@@ -31,9 +33,34 @@ const RecuperacaoSenha = props => {
       valid = false;
     }
     if (valid) {
-      props.navigation.goBack();
+      recuperarSenha();
     }
   };
+
+  const recuperarSenha = () => {
+    sendPasswordResetEmail(auth_mod, email)
+      .then(() => {
+        setEmail('')
+        props.navigation.goBack();
+      })
+
+      .catch((error) => {
+        switch (error.code) {
+          case 'auth/invalid-email':
+            setSenhaErro('O endereço de e-mail não é válido.');
+            break;
+          case 'auth/user-not-found':
+            setSenhaErro('Não há usuário correspondente a este endereço de e-mail.');
+            break;
+          case 'auth/network-request-failed':
+            setSenhaErro('Falha na rede. Verifique sua conexão com a internet.');
+            break;
+          default:
+            setSenhaErro('Erro ao enviar email de redefinição. Tente novamente.');
+            break;
+        }
+      })
+  }
 
   return (
     <View style={estilos.fundo}>
@@ -51,9 +78,10 @@ const RecuperacaoSenha = props => {
             placeholder="jurandir.pereira@hotmail.com"
             onChangeText={setEmail}
             erro={emailErro}
+            value={email}
           />
         </View>
-        <Botao1 texto="RECUPERAR" funcao={handleRecuperacao} />
+        <Botao1 texto="Recuperar" funcao={handleRecuperacao} />
       </View>
     </View>
   );

@@ -18,9 +18,10 @@ const estilos = StyleSheet.create({
         height: 'auto',
         alignItems: 'center', 
         paddingVertical: 8,
+        marginVertical: 8
     },
     textoBotao: {
-        fontSize: 25,
+        fontSize: 16,
         color: 'white',
         fontFamily: 'AveriaLibre-Regular'
     }

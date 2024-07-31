@@ -20,7 +20,7 @@ const estilos = StyleSheet.create({
 
     modalButtonText: {
         fontFamily: 'AveriaLibre-Regular',
-        fontSize: 26,
+        fontSize: 16,
     }
 })
 
