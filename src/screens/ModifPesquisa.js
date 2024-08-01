@@ -22,10 +22,16 @@ const ModifPesquisa = (props) => {
     useEffect(() => {
         const docRef = doc(db, 'novaPesquisa', id);
 
-        const unsubscribe = onSnapshot(docRef, (docSnap) => {
-            const data = docSnap.data();
-            setNome(data.nome);
-            setData(data.data);
+        const unsubscribe = onSnapshot(docRef, (snapshot) => {
+            if (snapshot.exists()) {
+                const pesquisa = snapshot.data();
+                setNome(pesquisa.nome);
+                setData(pesquisa.data);
+            } else {
+                console.log('Documento deletado');
+                setNome('');
+                setData('');
+            }
         });
 
     }, []);
@@ -41,15 +47,20 @@ const ModifPesquisa = (props) => {
         props.navigation.navigate('Drawer');
     }
 
+    const handleDeletePesquisa = () => {
+        deleteDoc(doc(db, "novaPesquisa", id))
+        props.navigation.navigate('Drawer');
+    }
+
     return (
         <View style={estilos.containerGeral}>
             <Header texto={"Modificar Pesquisa"} onPress={handleModifPesquisa} />
             <ScrollView style={estilos.containerSecundario} contentContainerStyle={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center' }}>
                 <View style={estilos.containerForms}>
                     <View style={estilos.containerInputs}>
-                        <InputText texto={"Nome"} secure={false} tipoInput="default" placeholder="Carnaval 2024" value={nome} onChangeText={setNome}/>
+                        <InputText texto={"Nome"} secure={false} tipoInput="default" value={nome} onChangeText={setNome}/>
 
-                        <InputText_icon texto={"Data"} tipoInput="default" placeholder={"16/02/2024"} value={data} onChangeText={setData}/>
+                        <InputText_icon texto={"Data"} tipoInput="default" value={data} onChangeText={setData}/>
 
                         <View>
                             <Text style={estilos.label}>Imagem</Text>
@@ -75,10 +86,7 @@ const ModifPesquisa = (props) => {
                             <Text style={estilos.modalText}>Tem certeza de apagar essa pesquisa?</Text>
                             <View style={estilos.modalButtons}>
                                 <BotaoModal texto="SIM" backColor="#FF8383" 
-                                    onPress={() => {
-                                        handleModifPesquisa(); 
-                                        setModalVisible(!modalVisible)
-                                    }}
+                                    onPress={handleDeletePesquisa}
                                 />
                                 <BotaoModal texto="CANCELAR" backColor="#3F92C5" onPress={() => setModalVisible(!modalVisible)}/>
                             </View>
