@@ -1,7 +1,7 @@
 import {ScrollView, StyleSheet, View, Text, TouchableOpacity, Modal, Alert} from 'react-native'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { db } from '../config/firebase'
-import {doc, updateDoc, deleteDoc} from 'firebase/firestore'
+import {doc, updateDoc, deleteDoc, onSnapshot} from 'firebase/firestore'
 
 import Header from '../components/Header'
 import InputText  from '../components/InputText'
@@ -12,10 +12,32 @@ import BotaoModal from '../components/BotaoModal'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const ModifPesquisa = (props) => {
-    const [modalVisible, setModalVisible] = useState(false);
+    const {id} = props.route.params;
 
+    const [modalVisible, setModalVisible] = useState(false);
+    const [nome, setNome] = useState('');
+    const [data, setData] = useState('');
+    //const [imagem, setImagem] = useState('');
+
+    useEffect(() => {
+        const docRef = doc(db, 'novaPesquisa', id);
+
+        const unsubscribe = onSnapshot(docRef, (docSnap) => {
+            const data = docSnap.data();
+            setNome(data.nome);
+            setData(data.data);
+        });
+
+    }, []);
     
     const handleModifPesquisa = () => {
+        const pesquisaRef = doc(db, "novaPesquisa", id)
+
+        updateDoc(pesquisaRef, {
+            nome,
+            data,
+        })
+
         props.navigation.navigate('Drawer');
     }
 
@@ -25,9 +47,9 @@ const ModifPesquisa = (props) => {
             <ScrollView style={estilos.containerSecundario} contentContainerStyle={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center' }}>
                 <View style={estilos.containerForms}>
                     <View style={estilos.containerInputs}>
-                        <InputText texto={"Nome"} secure={false} tipoInput="default" placeholder="Carnaval 2024"/>
+                        <InputText texto={"Nome"} secure={false} tipoInput="default" placeholder="Carnaval 2024" value={nome} onChangeText={setNome}/>
 
-                        <InputText_icon texto={"Data"} tipoInput="default" placeholder={"16/02/2024"}/>
+                        <InputText_icon texto={"Data"} tipoInput="default" placeholder={"16/02/2024"} value={data} onChangeText={setData}/>
 
                         <View>
                             <Text style={estilos.label}>Imagem</Text>

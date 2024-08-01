@@ -5,8 +5,10 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const AcoesPesquisa  = (props) => {
 
+  const {id} = props.route.params;
+
     const goToModifPesquisa = () => {
-      props.navigation.navigate('ModifPesquisa')
+      props.navigation.navigate('ModifPesquisa', {id})
     }
 
     const goToColeta = () => {
@@ -24,21 +26,21 @@ const AcoesPesquisa  = (props) => {
         
         <View style={estilos.containerBotoes}>
 
-          <TouchableOpacity onPress={() => props.navigation.navigate('ModifPesquisa')}>
+          <TouchableOpacity onPress={goToModifPesquisa}>
             <View style={estilos.containerBotao}>
               <Icon name="edit-note" size={70} color="#fff" />  
               <Text style={estilos.legenda}> Modificar </Text>  
             </View>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => props.navigation.navigate('Coleta')}>
+          <TouchableOpacity onPress={goToColeta}>
             <View style={estilos.containerBotao}>
               <Icon name="library-add-check" size={70} color="#fff" /> 
               <Text style={estilos.legenda}> Coletar dados </Text>
             </View>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => props.navigation.navigate('Relatorio')}>
+          <TouchableOpacity onPress={goToRelatorio}>
             <View style={estilos.containerBotao}>
               <Icon name="donut-large" size={70} color="#fff" />
               <Text style={estilos.legenda}> Relatório </Text>
