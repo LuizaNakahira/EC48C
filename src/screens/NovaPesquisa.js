@@ -1,8 +1,9 @@
-import {View, Text, TouchableOpacity, StyleSheet, ScrollView} from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet, ScrollView, Image} from 'react-native';
 import { useState } from 'react';
 import {collection, addDoc} from 'firebase/firestore'
 import { db } from '../config/firebase';
 import 'firebase/firestore'
+import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 
 
 import Header from '../components/Header';
@@ -16,12 +17,25 @@ const NovaPesquisa = (props) => {
 
     const [nome, setNome] = useState('')
     const [data, setData] = useState('')
-    //const [imagem, setImagem] = useState('')
+    const [imagem, setImagem] = useState('')
+    const [foto, setFoto] = useState()
 
     const [nomeErro, setNomeErro] = useState('')
     const [dataErro, setDataErro] = useState('')
 
-    
+    const capturarImagem = () => {
+        launchCamera({mediaType: 'photo', cameraType: 'back', quality: 1})
+        .then((result) => {
+            setImagem(result.assets[0].uri)
+            setFoto(result.assets[0])
+        }
+        )
+        .catch((error) => {
+            console.log("Erro capturar imagem: " + JSON.stringify(error))
+        }
+
+        )
+    }
 
     const handleCadastro = () => {
         let valid = true;
@@ -64,9 +78,18 @@ const NovaPesquisa = (props) => {
                 
                     <InputText_icon texto={"Data"} onChangeText={setData} erro={dataErro} value={data} placeholder={"DD/MM/YYYY"}/>
                     
-                    <View style={estilos.camposInput}>
+                    <View>
                         <Text style={estilos.label}>Imagem</Text>
-                        <TouchableOpacity style={estilos.inputImage}><Text style={estilos.labelImage}>Câmera/Galeria de imagens</Text></TouchableOpacity>
+                        <TouchableOpacity style={estilos.inputImage} onPress={capturarImagem}>
+                            
+                            {
+                                imagem ?
+                                    <Image source={{uri: imagem}} style={{width: 100, height: 75}} />
+                                    :
+                                    <Text style={estilos.labelImage}>Câmera/Galeria de imagens</Text>
+                            }
+                            
+                        </TouchableOpacity>
                     </View>
                 </View>
                 
@@ -95,19 +118,19 @@ const estilos = StyleSheet.create({
     containerForms: {
         width: '80%',
         display: 'flex',
-        gap: 46,
+        gap: 25,
         paddingVertical: 30,
     },
 
     containerInputs: {
-        gap: 10,
         width: '100%'
     },
 
     label: {
+        fontSize: 16,
         color: 'white',
-        fontSize: 25,
-        fontFamily: "AveriaLibre-Bold"
+        fontFamily: 'AveriaLibre-Regular',
+        marginBottom: 5,
         
     },
 
@@ -121,8 +144,8 @@ const estilos = StyleSheet.create({
 
    
     inputImage: {
-        height: 75,
-        width: "65%",
+        height: 100,
+        width: "50%",
         backgroundColor: "white",
 
         display: "flex",

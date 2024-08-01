@@ -122,19 +122,19 @@ const estilos = StyleSheet.create({
     containerForms: {
         width: '80%',
         display: 'flex',
-        gap: 46,
+        gap: 25,
         paddingVertical: 30,
     },
 
     containerInputs: {
-        gap: 13,
         width: '100%'
     },
 
     label: {
+        fontSize: 16,
         color: 'white',
-        fontSize: 25,
-        fontFamily: "AveriaLibre-Bold"
+        fontFamily: 'AveriaLibre-Regular',
+        marginBottom: 5,
         
     },
 
@@ -148,8 +148,8 @@ const estilos = StyleSheet.create({
 
    
     inputImage: {
-        height: 75,
-        width: "65%",
+        height: 100,
+        width: "50%",
         backgroundColor: "white",
 
         display: "flex",
