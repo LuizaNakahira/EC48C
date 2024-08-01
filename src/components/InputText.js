@@ -23,7 +23,7 @@ const InputText = (props, erro) => {
 
 const estilos = StyleSheet.create({
   textoInput: {
-    fontSize: 25,
+    fontSize: 16,
     color: 'white',
     fontFamily: 'AveriaLibre-Regular',
     marginBottom: 5,
@@ -35,12 +35,12 @@ const estilos = StyleSheet.create({
     paddingLeft: 15,
     fontFamily: 'AveriaLibre-Regular',
     color: '#3F92C5',
-    fontSize: 20
+    fontSize: 16
   },
   textoErrado: {
     color: '#FD7979',
     fontFamily: 'AveriaLibre-Regular',
-    marginVertical: 5,
+    marginVertical: 0,
   },
 });
 
