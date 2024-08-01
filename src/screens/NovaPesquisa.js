@@ -1,9 +1,9 @@
 import {View, Text, TouchableOpacity, StyleSheet, ScrollView, Image} from 'react-native';
 import { useState } from 'react';
-import {collection, addDoc} from 'firebase/firestore'
-import { db } from '../config/firebase';
-import 'firebase/firestore'
+import {collection, addDoc, doc} from 'firebase/firestore'
+import { db, storage } from '../config/firebase';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+import { uploadBytes, ref, getDownloadURL } from 'firebase/storage';
 
 
 import Header from '../components/Header';
@@ -37,12 +37,8 @@ const NovaPesquisa = (props) => {
         )
     }
 
-    const handleCadastro = () => {
+    const handleCadastro = async () => {
         let valid = true;
-        const docPesquisa = {
-            nome: nome,
-            data: data,
-        }
     
         if (nome.trim() === '') {
           setNomeErro('Preencha o nome da pesquisa');
@@ -55,11 +51,36 @@ const NovaPesquisa = (props) => {
         } 
     
         if (valid) {
-            addDoc(pesquisaCollection, docPesquisa).then((docRef) => {
-                console.log("pesquisa cadastrada: " + docRef.id)
-                props.navigation.goBack()
-            }).catch((erro) => {
-                console.log("Erro: " + erro)
+
+            const imagemRef = ref(storage, `imagens/${nome}_img.jpeg`);
+            const file = await fetch(imagem);
+            const blob = await file.blob();
+
+            uploadBytes(imagemRef, blob, { contentType: 'image/jpeg' })
+            .then( (result) => {
+                console.log("Arquivo enviado com sucesso");
+                getDownloadURL(imagemRef)
+                .then( (url) => {
+                    const docPesquisa = {
+                        nome: nome,
+                        data: data,
+                        imagemUrl: url
+                    }
+
+                    addDoc(pesquisaCollection, docPesquisa)
+                    .then((docRef) => {
+                        console.log("pesquisa cadastrada: " + docRef.id)
+                        props.navigation.goBack()
+                    }).catch((erro) => {
+                        console.log("Erro: " + erro)
+                    })
+                })
+                .catch((error) => {
+                    console.log("Erro ao pegar URL: " + JSON.stringify(error))
+                })
+            })
+            .catch((error) => {
+                console.log("Erro ao enviar o arquivo: " + error)
             })
         }
       };
