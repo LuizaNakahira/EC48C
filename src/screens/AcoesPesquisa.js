@@ -12,11 +12,11 @@ const AcoesPesquisa  = (props) => {
     }
 
     const goToColeta = () => {
-      props.navigation.navigate('Coleta')
+      props.navigation.navigate('Coleta', {id})
     }
 
     const goToRelatorio = () => {
-      props.navigation.navigate('Relatorio')
+      props.navigation.navigate('Relatorio', {id})
     }
 
     return (

@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 
 const Coleta  = (props) => {
+    const {id} = props.route.params;
 
     const goToAgradecimento = () => {
         props.navigation.navigate('Agradecimento')
@@ -12,7 +13,7 @@ const Coleta  = (props) => {
     return (
       <View style={estilos.containerGeral}>
 
-        <TouchableOpacity style={estilos.botaoInvisivel} onPress={() => props.navigation.navigate('AcoesPesquisa')}>
+        <TouchableOpacity style={estilos.botaoInvisivel} onPress={() => props.navigation.goBack()}>
         </TouchableOpacity>
 
         <View style={estilos.containerTexto}>

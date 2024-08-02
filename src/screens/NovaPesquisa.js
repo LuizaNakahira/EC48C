@@ -19,6 +19,7 @@ const NovaPesquisa = (props) => {
     const [data, setData] = useState('')
     const [imagem, setImagem] = useState('')
     const [foto, setFoto] = useState()
+    const [coleta, setColeta] = useState('')
 
     const [nomeErro, setNomeErro] = useState('')
     const [dataErro, setDataErro] = useState('')
@@ -55,7 +56,8 @@ const NovaPesquisa = (props) => {
             const docPesquisa = {
                 nome: nome,
                 data: data,
-                imagemUrl: ''
+                imagemUrl: '',
+                coleta: ''
             }
 
             const docRef = await addDoc(pesquisaCollection, docPesquisa)

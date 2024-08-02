@@ -5,7 +5,7 @@ const Agradecimento  = (props) => {
 
     useEffect(() => {
         const goBack = setTimeout(() => {
-            props.navigation.navigate('Coleta');
+            props.navigation.goBack();
         }, 3000); 
     
         return () => clearTimeout(goBack);
