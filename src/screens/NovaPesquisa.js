@@ -70,7 +70,7 @@ const NovaPesquisa = (props) => {
                     addDoc(pesquisaCollection, docPesquisa)
                     .then((docRef) => {
                         console.log("pesquisa cadastrada: " + docRef.id)
-                        props.navigation.goBack()
+                        props.navigation.pop()
                     }).catch((erro) => {
                         console.log("Erro: " + erro)
                     })
