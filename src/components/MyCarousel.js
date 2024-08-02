@@ -28,7 +28,7 @@ const MyCarousel = (props) => {
   }, [])
 
   const itemPesquisa = ({item}) => (
-    <TouchableOpacity onPress={() => props.onPress(item.id)}>
+    <TouchableOpacity onPress={() => props.onPress(item.id, item.nome)}>
       <Card item={item} />
     </TouchableOpacity>
   );

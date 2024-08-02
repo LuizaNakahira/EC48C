@@ -16,8 +16,8 @@ const Home = (props) => {
     props.navigation.navigate('NovaPesquisa')
   }
 
-  const goToAcoesPesquisa = (id) => {
-    props.navigation.navigate('AcoesPesquisa', {id: id})
+  const goToAcoesPesquisa = (id, nome) => {
+    props.navigation.navigate('AcoesPesquisa', {id: id, nome: nome})
   }
 
   return (

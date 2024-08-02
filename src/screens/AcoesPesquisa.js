@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const AcoesPesquisa  = (props) => {
 
-  const {id} = props.route.params;
+  const {id, nome} = props.route.params;
 
     const goToModifPesquisa = () => {
       props.navigation.navigate('ModifPesquisa', {id})
@@ -22,7 +22,7 @@ const AcoesPesquisa  = (props) => {
     return (
 
       <View style={estilos.containerGeral}>
-        <Header texto="Carnaval" onPress={() => props.navigation.goBack()}/>
+        <Header texto={nome} onPress={() => props.navigation.goBack()}/>
         
         <View style={estilos.containerBotoes}>
 
