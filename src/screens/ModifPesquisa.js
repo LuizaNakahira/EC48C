@@ -1,7 +1,9 @@
-import {ScrollView, StyleSheet, View, Text, TouchableOpacity, Modal, Alert} from 'react-native'
+import {ScrollView, StyleSheet, View, Text, TouchableOpacity, Modal, Image} from 'react-native'
 import { useState, useEffect } from 'react'
-import { db } from '../config/firebase'
+import { db, storage } from '../config/firebase'
 import {doc, updateDoc, deleteDoc, onSnapshot} from 'firebase/firestore'
+import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+import { uploadBytes, ref, getDownloadURL, deleteObject } from 'firebase/storage';
 
 import Header from '../components/Header'
 import InputText  from '../components/InputText'
@@ -17,7 +19,8 @@ const ModifPesquisa = (props) => {
     const [modalVisible, setModalVisible] = useState(false);
     const [nome, setNome] = useState('');
     const [data, setData] = useState('');
-    //const [imagem, setImagem] = useState('');
+    const [imagemUrl, setImagemUrl] = useState('');
+    const [foto, setFoto] = useState();
 
     useEffect(() => {
         const docRef = doc(db, 'novaPesquisa', id);
@@ -27,8 +30,9 @@ const ModifPesquisa = (props) => {
                 const pesquisa = snapshot.data();
                 setNome(pesquisa.nome);
                 setData(pesquisa.data);
+                setImagemUrl(pesquisa.imagemUrl);
+
             } else {
-                console.log('Documento deletado');
                 setNome('');
                 setData('');
             }
@@ -36,18 +40,66 @@ const ModifPesquisa = (props) => {
 
     }, []);
     
-    const handleModifPesquisa = () => {
+    const capturarImagem = () => {
+        launchCamera({mediaType: 'photo', cameraType: 'back', quality: 1})
+        .then((result) => {
+            setImagemUrl(result.assets[0].uri)
+            setFoto(result.assets[0])
+        }
+        )
+        .catch((error) => {
+            console.log("Erro capturar imagem: " + JSON.stringify(error))
+        }
+
+        )
+    }
+
+    const handleModifPesquisa = async () => {
         const pesquisaRef = doc(db, "novaPesquisa", id)
 
-        updateDoc(pesquisaRef, {
-            nome,
-            data,
-        })
+        if (foto) {
+            const imagemRef = ref(storage, `imagens/${id}_img.jpeg`);
+            const file = await fetch(foto.uri);
+            const blob = await file.blob();
+
+            uploadBytes(imagemRef, blob, { contentType: 'image/jpeg' })
+            .then( (result) => {
+                console.log("Arquivo atualizado com sucesso");
+                getDownloadURL(imagemRef)
+                .then((url) => {
+                    updateDoc(pesquisaRef, {
+                        nome,
+                        data,
+                        imagemUrl: url
+                    })
+                })
+                .catch((error) => {
+                    console.log("Erro ao pegar URL: " + JSON.stringify(error))
+                })
+            })
+            .catch((error) => {
+                console.log("Erro ao enviar o arquivo: " + JSON.stringify(error))
+            })
+    
+            // Limpa o estado da foto após o upload
+            setFoto(null);
+        }else {
+            // Se nenhuma nova imagem foi capturada, atualiza apenas os outros dados
+            updateDoc(pesquisaRef, {
+                nome,
+                data,
+                imagemUrl
+            });
+        }
 
         props.navigation.navigate('Drawer');
     }
 
     const handleDeletePesquisa = () => {
+        if(imagemUrl){
+            const imagemRef = ref(storage, `imagens/${id}_img.jpeg`);
+            deleteObject(imagemRef);
+        }
         deleteDoc(doc(db, "novaPesquisa", id))
         props.navigation.navigate('Drawer');
     }
@@ -64,8 +116,13 @@ const ModifPesquisa = (props) => {
 
                         <View>
                             <Text style={estilos.label}>Imagem</Text>
-                            <TouchableOpacity style={estilos.inputImage}>
-                                <Icon  name="celebration" size={50} color="#C60EB3"/>
+                            <TouchableOpacity style={estilos.inputImage} onPress={capturarImagem} >
+                                {
+                                    imagemUrl ?
+                                        <Image source={{uri: imagemUrl}} style={{width: 100, height: 75}} />
+                                        :
+                                        <Text style={estilos.labelImage}>Sem imagem</Text>
+                                }
                             </TouchableOpacity>
                         </View>
                     </View>

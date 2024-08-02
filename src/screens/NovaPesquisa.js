@@ -1,6 +1,6 @@
 import {View, Text, TouchableOpacity, StyleSheet, ScrollView, Image} from 'react-native';
 import { useState } from 'react';
-import {collection, addDoc, doc} from 'firebase/firestore'
+import {collection, addDoc, doc, updateDoc} from 'firebase/firestore'
 import { db, storage } from '../config/firebase';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import { uploadBytes, ref, getDownloadURL } from 'firebase/storage';
@@ -52,35 +52,39 @@ const NovaPesquisa = (props) => {
     
         if (valid) {
 
-            const imagemRef = ref(storage, `imagens/${nome}_img.jpeg`);
+            const docPesquisa = {
+                nome: nome,
+                data: data,
+                imagemUrl: ''
+            }
+
+            const docRef = await addDoc(pesquisaCollection, docPesquisa)
+            const id = docRef.id;
+            
+
+            const imagemRef = ref(storage, `imagens/${id}_img.jpeg`);
             const file = await fetch(imagem);
             const blob = await file.blob();
 
             uploadBytes(imagemRef, blob, { contentType: 'image/jpeg' })
             .then( (result) => {
-                console.log("Arquivo enviado com sucesso");
                 getDownloadURL(imagemRef)
                 .then( (url) => {
-                    const docPesquisa = {
-                        nome: nome,
-                        data: data,
+                    updateDoc(docRef, {
                         imagemUrl: url
-                    }
-
-                    addDoc(pesquisaCollection, docPesquisa)
-                    .then((docRef) => {
-                        console.log("pesquisa cadastrada: " + docRef.id)
-                        props.navigation.pop()
-                    }).catch((erro) => {
-                        console.log("Erro: " + erro)
-                    })
+                    }).then(() => {
+                        console.log("Pesquisa cadastrada: " + docRef.id);
+                        props.navigation.pop();
+                    }).catch((error) => {
+                        console.log("Erro ao cadastrar a pesquisa: " + JSON.stringify(error));
+                    });
                 })
                 .catch((error) => {
                     console.log("Erro ao pegar URL: " + JSON.stringify(error))
                 })
             })
             .catch((error) => {
-                console.log("Erro ao enviar o arquivo: " + error)
+                console.log("Erro ao enviar o arquivo imagem: " + JSON.stringify(error))
             })
         }
       };
