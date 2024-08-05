@@ -9,12 +9,15 @@ import { Divider } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const DrawerContent = (props) => {
+    const {email} = props;
+    console.log({email})
+
     return(
         <DrawerContentScrollView {...props} contentContainerStyle={{ display: 'flex', flex: 1, justifyContent: 'space-between'}} style={{ backgroundColor: '#2B1F5C'}}>
             <View  style={{ display: 'flex',  paddingVertical: 20,}} >
                
                 <View style={{ display: 'flex', flexDirection: 'row',paddingVertical: 20,  justifyContent: 'center'}}>
-                    <Text style={{ color: 'white', fontSize: 22 }}>usuario@dominio.com</Text>
+                    <Text style={{ color: 'white', fontSize: 22 }}>{email}</Text>
                 </View>
 
                 <View style={{ display: 'flex', alignItems: 'center', paddingVertical: 20,}}>
