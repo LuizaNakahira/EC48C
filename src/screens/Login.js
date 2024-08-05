@@ -49,10 +49,9 @@ const Login = (props) => {
   const autenticar = () => {
     signInWithEmailAndPassword(auth_mod, email, senha)
       .then(() => {
-        //setEmail('');
-        //setSenha('');
+        setEmail('');
+        setSenha('');
         props.navigation.navigate('Drawer', {email: email})
-        console.log(email)
       })
 
       .catch((error) => {

@@ -10,7 +10,6 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const DrawerContent = (props) => {
     const {email} = props;
-    console.log({email})
 
     return(
         <DrawerContentScrollView {...props} contentContainerStyle={{ display: 'flex', flex: 1, justifyContent: 'space-between'}} style={{ backgroundColor: '#2B1F5C'}}>
