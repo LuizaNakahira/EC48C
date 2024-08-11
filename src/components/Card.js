@@ -17,7 +17,6 @@ const Card = ({item}) => {
             :
             null
         }
-        {/* <Icon name={item.imagem} size={100} color={item.color} /> */}
         <View>
           <Text style={styles.title}>{item.nome}</Text>
           <Text style={styles.date}>{item.data}</Text>
