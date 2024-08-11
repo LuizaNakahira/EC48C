@@ -50,6 +50,7 @@ const NovaConta = (props) => {
         setEmail('');
         setSenha('');
         setNovaSenha('');
+        setSenhaErro('');
         props.navigation.navigate('Login')
       })
 
@@ -86,14 +87,12 @@ const NovaConta = (props) => {
           <InputText
             tipoInput="email-address"
             texto="E-mail"
-            placeholder="jurandir.pereira@hotmail.com"
             onChangeText={setEmail}
             value={email}
           />
           <InputText
             tipoInput="visible-password"
             texto="Senha"
-            placeholder="*********"
             onChangeText={setSenha}
             value={senha}
             

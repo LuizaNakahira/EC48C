@@ -9,6 +9,8 @@ import {useState} from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth_mod } from '../config/firebase';
+import { useDispatch } from 'react-redux';
+import { reducerSetLogin } from '../../redux/loginSlice';
 
 import InputText from '../components/InputText'
 import Botao1 from '../components/Botao1'
@@ -19,6 +21,8 @@ const Login = (props) => {
   const [senha, setSenha] = useState('')
 
   const [senhaErro, setSenhaErro] = useState('')
+
+  const dispatch = useDispatch()
 
   const validarEmail = email => {
     //validar email
@@ -51,7 +55,10 @@ const Login = (props) => {
       .then(() => {
         setEmail('');
         setSenha('');
-        props.navigation.navigate('Drawer', {email: email})
+
+        dispatch(reducerSetLogin({email: email, senha: senha}))
+        
+        props.navigation.navigate('Drawer')
       })
 
       .catch((error) => {
@@ -96,14 +103,12 @@ const Login = (props) => {
           <InputText
             tipoInput="email-address"
             texto="E-mail"
-            placeholder="jurandir.pereira@hotmail.com"
             onChangeText={setEmail}
             value={email}
           />
           <InputText
             tipoInput="visible-password"
             texto="Senha"
-            placeholder="*********"
             onChangeText={setSenha}
             erro={senhaErro}
             value={senha}
@@ -115,6 +120,7 @@ const Login = (props) => {
           <TouchableOpacity style={estilos.fundoBotaoAzul} onPress={() => {
             setEmail('');
             setSenha('');
+            setSenhaErro('');
             props.navigation.navigate('NovaConta')
           }}>
             <Text style={estilos.textoBotao}>Criar minha conta</Text>
@@ -125,6 +131,7 @@ const Login = (props) => {
             onPress={() => {
               setEmail('');
               setSenha('');
+              setSenhaErro('');
               props.navigation.navigate('RecuperacaoSenha')
             }}>
             <Text style={estilos.textoBotao}>Esqueci minha senha</Text>
