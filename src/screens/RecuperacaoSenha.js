@@ -75,7 +75,6 @@ const RecuperacaoSenha = props => {
           <InputText
             tipoInput="email-address"
             texto="E-mail"
-            placeholder="jurandir.pereira@hotmail.com"
             onChangeText={setEmail}
             erro={emailErro}
             value={email}

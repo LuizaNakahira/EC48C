@@ -7,9 +7,10 @@ import {
 import { Text, Pressable, View } from 'react-native';
 import { Divider } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { useSelector } from 'react-redux';
 
 const DrawerContent = (props) => {
-    const {email} = props;
+    const email = useSelector((state) => state.login.email);
 
     return(
         <DrawerContentScrollView {...props} contentContainerStyle={{ display: 'flex', flex: 1, justifyContent: 'space-between'}} style={{ backgroundColor: '#2B1F5C'}}>

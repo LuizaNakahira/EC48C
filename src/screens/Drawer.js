@@ -7,8 +7,6 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 const DrawerNavigator = createDrawerNavigator()
 
 const Drawer = (props) => {
-    const { email } = props.route.params || {};
-
     return(
         <DrawerNavigator.Navigator 
       screenOptions={{ 
@@ -25,7 +23,7 @@ const Drawer = (props) => {
       
       }} 
         initialRouteName='Home' 
-        drawerContent={(props) => <DrawerContent {...props} email={email} />} 
+        drawerContent={(props) => <DrawerContent {...props} />} 
       >
 
        
