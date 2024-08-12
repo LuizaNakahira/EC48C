@@ -98,13 +98,9 @@ const NovaPesquisa = (props) => {
         }
       };
 
-      const voltar = () => {
-          props.navigation.goBack() //volta pra tela anterior a essa, nesse caso a home já que pra acessar essa tela é pela home
-      }
-
   return (
     <View style={estilos.containerGeral}>
-        <Header texto={"Nova pesquisa"} funcao={voltar} onPress={() => props.navigation.goBack()}/>
+        <Header texto={"Nova pesquisa"} onPress={() => props.navigation.pop()}/>
         <ScrollView style={estilos.containerSecundario} contentContainerStyle={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center' }}>
             <View style={estilos.containerForms}>
                 <View style={estilos.containerInputs}>
