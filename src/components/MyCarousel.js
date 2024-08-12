@@ -8,7 +8,7 @@ const {width} = Dimensions.get('window');
 
 const MyCarousel = (props) => {
   const pesquisaCollection = collection(db, "novaPesquisa")
-  const [listaPesquisa, setListaPesquisa] = useState()
+  const [listaPesquisa, setListaPesquisa] = useState([])
 
   useEffect( () => {
     const q = query (pesquisaCollection)
@@ -24,8 +24,15 @@ const MyCarousel = (props) => {
 
       setListaPesquisa(pesquisa)
 
+
+      return () => unsubscribe(); 
     })
   }, [])
+
+
+  const pesquisaFiltrada = listaPesquisa.filter((item) =>
+    item.nome.toLowerCase().includes(props.searchText.toLowerCase())
+  ); //
 
   const itemPesquisa = ({item}) => (
     <TouchableOpacity onPress={() => props.onPress(item)}>
@@ -35,7 +42,7 @@ const MyCarousel = (props) => {
 
   return (
     <FlatList 
-      data={listaPesquisa}
+      data={pesquisaFiltrada} 
       renderItem = {itemPesquisa}
       keyExtractor={(item, index) => index.toString()}
       showsHorizontalScrollIndicator={false}

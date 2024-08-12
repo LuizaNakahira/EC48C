@@ -5,12 +5,14 @@ import MyCarousel from '../components/MyCarousel';
 import AcoesPesquisa from './AcoesPesquisa';
 import { useDispatch } from 'react-redux'
 import { reducerSetPesquisa } from '../../redux/pesquisaSlice'
-
+import React, { useState } from 'react';
 
 
 const Home = (props) => {
 
   const dispatch = useDispatch()
+  const [searchText, setSearchText] = useState(''); 
+
 
   const goToDrawer = () => {
     props.navigation.navigate('Drawer');
@@ -25,14 +27,18 @@ const Home = (props) => {
     props.navigation.navigate('AcoesPesquisa')
   }
 
+  const handleSearch = (query) => {
+    setSearchText(query);
+  }; //
+
   return (
     <View style={estilos.fundo}>     
 
       <View style={estilos.containerHome}>
-        <Search />
+        <Search onSearch={handleSearch}/> 
         
         <View style={estilos.containerCarousel}>
-        <MyCarousel onPress={goToAcoesPesquisa} />
+        <MyCarousel onPress={goToAcoesPesquisa} searchText={searchText}/>
         </View>
         
         <Botao1 texto="NOVA PESQUISA" funcao={goToNovaPesquisa}/>

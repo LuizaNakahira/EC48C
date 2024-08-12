@@ -15,6 +15,15 @@ const theme = {
 const Search = props => {
   const [searchQuery, setSearchQuery] = useState('');
 
+
+  const onChangeSearch = (query) => { //
+    setSearchQuery(query);
+    if (props.onSearch) {
+      props.onSearch(query);  
+    }
+  };
+
+
   return (
     <Searchbar
       style={estilos.pesquisa}
@@ -22,7 +31,7 @@ const Search = props => {
       placeholderTextColor='gray'
       iconColor='gray'
       inputStyle={{fontFamily: 'AveriaLibre-Regular'}}
-      onChangeText={setSearchQuery}
+      onChangeText={onChangeSearch} //
       value={searchQuery}
     />
   );
