@@ -4,6 +4,7 @@ import { db, storage } from '../config/firebase'
 import {doc, updateDoc, deleteDoc, onSnapshot} from 'firebase/firestore'
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import { uploadBytes, ref, getDownloadURL, deleteObject } from 'firebase/storage';
+import { useSelector } from 'react-redux';
 
 import Header from '../components/Header'
 import InputText  from '../components/InputText'
@@ -14,13 +15,13 @@ import BotaoModal from '../components/BotaoModal'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const ModifPesquisa = (props) => {
-    const {id} = props.route.params;
-
     const [modalVisible, setModalVisible] = useState(false);
     const [nome, setNome] = useState('');
     const [data, setData] = useState('');
     const [imagemUrl, setImagemUrl] = useState('');
     const [foto, setFoto] = useState();
+
+    const id = useSelector((state) => state.pesquisa.id)
 
     useEffect(() => {
         const docRef = doc(db, 'novaPesquisa', id);
@@ -106,7 +107,7 @@ const ModifPesquisa = (props) => {
 
     return (
         <View style={estilos.containerGeral}>
-            <Header texto={"Modificar Pesquisa"} onPress={handleModifPesquisa} />
+            <Header texto={"Modificar Pesquisa"} onPress={() => props.navigation.pop(2)} />
             <ScrollView style={estilos.containerSecundario} contentContainerStyle={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center' }}>
                 <View style={estilos.containerForms}>
                     <View style={estilos.containerInputs}>

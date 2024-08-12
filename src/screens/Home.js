@@ -3,10 +3,14 @@ import Botao1 from '../components/Botao1';
 import Search from '../components/Search';
 import MyCarousel from '../components/MyCarousel';
 import AcoesPesquisa from './AcoesPesquisa';
+import { useDispatch } from 'react-redux'
+import { reducerSetPesquisa } from '../../redux/pesquisaSlice'
 
 
 
 const Home = (props) => {
+
+  const dispatch = useDispatch()
 
   const goToDrawer = () => {
     props.navigation.navigate('Drawer');
@@ -16,8 +20,9 @@ const Home = (props) => {
     props.navigation.navigate('NovaPesquisa')
   }
 
-  const goToAcoesPesquisa = (id, nome) => {
-    props.navigation.navigate('AcoesPesquisa', {id: id, nome: nome})
+  const goToAcoesPesquisa = (pesquisa) => {
+    dispatch(reducerSetPesquisa(pesquisa)) //redux
+    props.navigation.navigate('AcoesPesquisa')
   }
 
   return (

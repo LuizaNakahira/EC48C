@@ -2,13 +2,14 @@ import React, {useEffect, useState} from 'react';
 import {View, StyleSheet, Text} from 'react-native';
 import {PieChart} from 'react-native-svg-charts';
 import {getFirestore, doc, getDoc} from 'firebase/firestore';
+import { useSelector } from 'react-redux';
 
 import Header from '../components/Header';
 
 const Relatorio = props => {
   const db = getFirestore();
 
-  const {id} = props.route.params;
+  const id = useSelector((state) => state.pesquisa.id)
   const [data, setData] = useState([]);
 
   useEffect(() => {

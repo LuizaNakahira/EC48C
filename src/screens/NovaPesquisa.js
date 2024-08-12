@@ -76,6 +76,7 @@ const NovaPesquisa = (props) => {
                         imagemUrl: url
                     }).then(() => {
                         console.log("Pesquisa cadastrada: " + docRef.id);
+
                         props.navigation.pop();
                     }).catch((error) => {
                         console.log("Erro ao cadastrar a pesquisa: " + JSON.stringify(error));

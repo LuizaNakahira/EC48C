@@ -17,11 +17,11 @@ const Card = ({item}) => {
             :
             null
         }
-        <View>
+        <View style={styles.infos}>
           <Text style={styles.title}>{item.nome}</Text>
           <Text style={styles.date}>{item.data}</Text>
         </View>
-        
+
       </View>
     </View>
   );
@@ -29,6 +29,7 @@ const Card = ({item}) => {
 
 const styles = StyleSheet.create({
   itemContainer: {
+    display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -37,18 +38,25 @@ const styles = StyleSheet.create({
     height: width / 5.0,
     width: width * 0.3,
     borderRadius: 12,
-    justifyContent: 'space-evenly',
+    display: 'flex',
     alignItems: 'center',
+    justifyContent: 'space-evenly'
+  },
+  infos: {
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    gap: 2,
   },
   title: {
     color: '#419ED7',
-    fontSize: 20,
+    fontSize: 26,
     justifyContent: 'flex-end',
     fontFamily: 'AveriaLibre-Regular',
   },
   date: {
     color: '#80808080',
-    fontSize: 12,
+    fontSize: 14,
     fontFamily: 'AveriaLibre-Regular',
   },
 });

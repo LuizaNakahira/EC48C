@@ -1,22 +1,23 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import Header from '../components/Header';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {useSelector} from 'react-redux'
 
 
 const AcoesPesquisa  = (props) => {
 
-  const {id, nome} = props.route.params;
+  const nome = useSelector((state) => state.pesquisa.nome)
 
     const goToModifPesquisa = () => {
-      props.navigation.navigate('ModifPesquisa', {id})
+      props.navigation.navigate('ModifPesquisa')
     }
 
     const goToColeta = () => {
-      props.navigation.navigate('Coleta', {id})
+      props.navigation.navigate('Coleta')
     }
 
     const goToRelatorio = () => {
-      props.navigation.navigate('Relatorio', {id})
+      props.navigation.navigate('Relatorio')
     }
 
     return (

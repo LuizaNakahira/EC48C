@@ -1,10 +1,12 @@
 import { useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { useSelector } from 'react-redux';
 
 
 const Coleta  = (props) => {
-    const {id} = props.route.params;
+
+    const id = useSelector((state) => state.pesquisa.id)
 
     const goToAgradecimento = () => {
         props.navigation.navigate('Agradecimento')
