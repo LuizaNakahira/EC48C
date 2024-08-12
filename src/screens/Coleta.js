@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 const Coleta  = (props) => {
 
     const id = useSelector((state) => state.pesquisa.id)
+    const nome = useSelector((state) => state.pesquisa.nome)
 
     const goToAgradecimento = () => {
         props.navigation.navigate('Agradecimento')
@@ -19,7 +20,7 @@ const Coleta  = (props) => {
         </TouchableOpacity>
 
         <View style={estilos.containerTexto}>
-            <Text style={estilos.texto}> O que você achou do Carnaval 2024? </Text>
+            <Text style={estilos.texto}> O que você achou do {nome}? </Text>
         </View>
 
           <View style={estilos.containerBotoes}>
