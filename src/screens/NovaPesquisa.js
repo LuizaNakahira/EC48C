@@ -57,7 +57,13 @@ const NovaPesquisa = (props) => {
                 nome: nome,
                 data: data,
                 imagemUrl: '',
-                coleta: ''
+                coleta: {
+                    excelente: 0,
+                    bom: 0,
+                    neutro: 0,
+                    ruim: 0,
+                    pessimo: 0
+                }
             }
 
             const docRef = await addDoc(pesquisaCollection, docPesquisa)
