@@ -1,15 +1,15 @@
 import React, {useEffect, useState} from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet, Text, Alert} from 'react-native';
 import {PieChart} from 'react-native-svg-charts';
 import {getFirestore, doc, getDoc} from 'firebase/firestore';
 import { useSelector } from 'react-redux';
 
 import Header from '../components/Header';
 
-const Relatorio = props => {
+const Relatorio = (props) => {
   const db = getFirestore();
 
-  const id = useSelector((state) => state.pesquisa.id)
+  const id = useSelector((state) => state.pesquisa.id);
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -23,29 +23,34 @@ const Relatorio = props => {
         const formattedData = [
           {
             key: 'Excelente',
-            value: coleta.Excelente || 0,
+            value: coleta.excelente || 0,
             svg: {fill: '#F1CE7E'},
             arc: {outerRadius: '120%', cornerRadius: 0, padAngle: 0.2},
+            onPress: () => handlePress('Excelente', coleta.excelente || 0),
           },
           {
             key: 'Bom',
-            value: coleta.Bom || 0,
+            value: coleta.bom || 0,
             svg: {fill: '#6994FE'},
+            onPress: () => handlePress('Bom', coleta.bom || 0),
           },
           {
             key: 'Neutro',
-            value: coleta.Neutro || 0,
+            value: coleta.neutro || 0,
             svg: {fill: '#5FCDA4'},
+            onPress: () => handlePress('Neutro', coleta.neutro || 0),
           },
           {
             key: 'Ruim',
-            value: coleta.Ruim || 0,
+            value: coleta.ruim || 0,
             svg: {fill: '#EA7288'},
+            onPress: () => handlePress('Ruim', coleta.ruim || 0),
           },
           {
             key: 'Péssimo',
-            value: coleta.Péssimo || 0,
+            value: coleta.pessimo || 0,
             svg: {fill: '#53D8D8'},
+            onPress: () => handlePress('Péssimo', coleta.pessimo || 0),
           },
         ];
         setData(formattedData);
@@ -54,6 +59,10 @@ const Relatorio = props => {
 
     fetchData();
   }, [id]);
+
+  const handlePress = (category, count) => {
+    Alert.alert(`${category}`, `Quantidade de respostas: ${count}`);
+  };
 
   return (
     <View style={estilos.container}>
